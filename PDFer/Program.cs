@@ -12,8 +12,10 @@ namespace PDFer {
     public class Program
     {
         private static string outputName = string.Empty;
+        private static string workFolder = Path.Combine(Directory.GetCurrentDirectory(), "outputs");
         public static void Main()
         {
+            Directory.CreateDirectory(workFolder);
             string dataFile = "full_game.json"; // Replace with your data file path
             SwapIdsWithData(dataFile);
             CreatePDF();
@@ -54,7 +56,7 @@ namespace PDFer {
             // If outputName is not found, raise an error
             if (outputName == null)
             {
-                throw new Exception("Name for output file not found in input data.");
+                throw new Exception("Script name not found in input data.");
             }
 
             // Prepare the output list
@@ -83,6 +85,34 @@ namespace PDFer {
                         Environment.Exit(1);
                     }
                 }
+                else if (item is JObject jObject)
+                {
+                    if (jObject.TryGetValue("id", out JToken idToken) && idToken.Type == JTokenType.String)
+                    {
+                        if (idToken.ToString() != "_meta")
+                        {
+                            string formattedId = idToken.ToString().Replace("_", "").ToLower() + "_uk";
+                            if (dataDict.TryGetValue(formattedId, out var dictEntry))
+                            {
+                                outputData.Add(dictEntry);
+                            }
+                            else
+                            {
+                                Console.WriteLine($"Error: ID '{formattedId}' not found in data.");
+                                Console.WriteLine("Available IDs:");
+                                foreach (var key in dataDict.Keys)
+                                {
+                                    Console.WriteLine($" - {key}");
+                                }
+                                Environment.Exit(1);
+                            }
+                        }
+                        else
+                        {
+                            outputData.Add(item);
+                        }
+                    }
+                }
                 else
                 {
                     outputData.Add(item);
@@ -90,13 +120,14 @@ namespace PDFer {
             }
 
             // Write the output data to a new JSON file
-            string outputFilePath = $"{outputName}.json";
+            string outputFilePath = $"{workFolder}\\{outputName}.json";
             string outputJson = JsonConvert.SerializeObject(outputData, Formatting.Indented);
             File.WriteAllText(outputFilePath, outputJson);
+            Console.WriteLine("JSON file created.");
         }
         public static void CreatePDF()
         {
-            string filePath = $"{outputName}.json";
+            string filePath = $"{workFolder}\\{outputName}.json";
             string author = string.Empty;
             string scriptName = string.Empty;
             string json = File.ReadAllText(filePath);
@@ -168,7 +199,7 @@ namespace PDFer {
                 });
             });
             //document.GeneratePdfAndShow();
-            document.GeneratePdf($"D:\\ProgramOutputs\\{scriptName}.pdf");
+            document.GeneratePdf($"{workFolder}\\{scriptName}.pdf");
         }
 
         public static void TeamDrawing(string team, string nickname, ColumnDescriptor contentColumn, Character[] characters)
