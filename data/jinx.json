@@ -1,5 +1,9 @@
 [
     {
+	"id": "_meta",
+	"version": 1.0
+    },
+    {
         "id": "chambermaid",
         "jinx": [
             {
