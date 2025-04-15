@@ -1,7 +1,7 @@
 [
     {
 	"id": "_meta",
-	"version": 1.02
+	"version": 1.03
     },
     {
         "id": "acrobat_uk",
@@ -543,7 +543,7 @@
     },
     {
         "id": "damsel_uk",
-        "name": "Дівиця",
+        "name": "Панянка",
         "edition": "",
         "team": "outsider",
         "firstNight": 31,
