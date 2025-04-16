@@ -61,7 +61,7 @@
     },
     {
         "id": "alsaahir_uk",
-        "name": "Азахир",
+        "name": "Альсахир",
         "edition": "",
         "team": "townsfolk",
         "firstNight": 0,
@@ -70,7 +70,7 @@
         "otherNightReminder": "",
         "reminders": [],
         "setup": false,
-        "ability": "Раз в день, якщо публічно вгадаєш які гравці Міньони і які - Демони, добро перемагає.",
+        "ability": "Щодня, якщо ви з першого разу публічно вгадаєте, хто з гравців є міньйонами, а хто – демонами, добро перемагає.",
         "image": "/build/img/icons/townsfolk/alsaahir.webp",
         "remindersGlobal": []
     },
