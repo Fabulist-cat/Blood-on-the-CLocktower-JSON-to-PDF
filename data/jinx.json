@@ -1,7 +1,7 @@
 [
     {
 	"id": "_meta",
-	"version": 1.0
+	"version": 1.01
     },
     {
         "id": "chambermaid",
@@ -167,7 +167,7 @@
             },
             {
                 "id": "hatter",
-                "reason": "If a Demon chooses Lil' Monsta, they also choose a Minion to become and babysit Lil' Monsta tonight."
+                "reason": "Якщо демон обирає Почварку, він також обирає міньйона, який буде її сьогодні нянчити."
             },
             {
                 "id": "xizi",
@@ -583,7 +583,7 @@
             },
             {
                 "id": "preacher",
-                "reason": "If the Vizier loses their ability, they learn this. If the Vizier is executed while they have their ability, their team wins."
+                "reason": "Якщо Візир втрачає свою здібність, він дізнається про це. Якщо Візира страчено, коли в нього є здібність, його команда виграє."
             },
             {
                 "id": "courtier",
