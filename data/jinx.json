@@ -1,7 +1,7 @@
 [
     {
 	"id": "_meta",
-	"version": 1.02
+	"version": 1.03
     },
     {
         "id": "chambermaid",
@@ -201,11 +201,11 @@
             },
             {
                 "id": "preacher",
-                "reason": "Only 1 jinxed character can be in play."
+                "reason": "Якщо Проповідник обирає Легіон, Легіон зберігає свою здібність, але Проповідник може дізнатись, що це – Легіон."
             },
             {
                 "id": "hatter",
-                "reason": "If the Hatter dies and Legion is in play, nothing happens. If the Hatter dies and an evil player chooses Legion, all current evil players become Legion."
+                "reason": "Якщо Капелюшник помирає, і Легіон є у грі, нічого не відбувається. Якщо Капелюшник помирає, і злий гравець обирає Легіон, всі злі на цю мить гравці стають Легіоном."
             },
             {
                 "id": "xizi",
