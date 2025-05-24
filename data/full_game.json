@@ -1,7 +1,7 @@
 [
     {
 	"id": "_meta",
-	"version": 138.01
+	"version": 140.01
     },
     {
         "id": "acrobat_uk",
@@ -1442,18 +1442,18 @@
     },
     {
         "id": "lycanthrope_uk",
-        "name": "Лікантроп",
+        "name": "Вовкулака",
         "edition": "",
         "team": "townsfolk",
         "firstNight": 0,
         "firstNightReminder": "",
         "otherNight": 23,
-        "otherNightReminder": "Лікантроп вказує на гравця; той помирає, і цієї ночі більше ніхто не може померти.",
+        "otherNightReminder": "Вовкулака вказує на гравця; той помирає, і цієї ночі більше ніхто не може померти.",
         "reminders": [
-            "Мертв"
+            "Помре"
         ],
         "setup": false,
-        "ability": "Щоночі* обирай живого гравця: якщо вони за добро, вони помирають, але цієї ночі помруть лише вони.",
+        "ability": "Щоночі* оберіть живого гравця: якщо він добрий, то помре, але цієї ночі більше ніхто не зможе померти.",
         "image": "/build/img/icons/townsfolk/lycanthrope.webp",
         "remindersGlobal": []
     },
@@ -1468,7 +1468,7 @@
         "otherNightReminder": "",
         "reminders": [],
         "setup": false,
-        "ability": "Міньонам здається, що ти - Демон. Демону здається, що ти - Міньон.",
+        "ability": "Міньонам здається, що ви - демон. Демону здається, що ви - міньон.",
         "image": "/build/img/icons/townsfolk/magician.webp",
         "remindersGlobal": []
     },
@@ -1677,19 +1677,19 @@
     },
     {
         "id": "nodashii_uk",
-        "name": "А-Дащіі",
+        "name": "Но-Даші",
         "edition": "snv",
         "team": "demon",
         "firstNight": 0,
         "firstNightReminder": "",
         "otherNight": 30,
-        "otherNightReminder": "А-Дащіі вказує на гравця. Цей гравець помирає.",
+        "otherNightReminder": "Но-Даші вказує на гравця. Цей гравець помирає.",
         "reminders": [
             "Мертв",
             "Отруєн"
         ],
         "setup": false,
-        "ability": "Щоночі* обирай гравця; вони помирають. Двох твоїх сусідів-Міщан отруєно.",
+        "ability": "Щоночі* оберіть гравця; він помирає. Двох ваших сусідів-городян отруєно.",
         "image": "/build/img/icons/demon/nodashii.webp",
         "remindersGlobal": []
     },
