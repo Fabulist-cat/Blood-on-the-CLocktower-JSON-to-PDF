@@ -1,7 +1,7 @@
 [
     {
 	"id": "_meta",
-	"version": 1.04
+	"version": 1.06
     },
     {
         "id": "chambermaid",
@@ -700,7 +700,7 @@
         "jinx": [
             {
                 "id": "bountyhunter",
-                "reason": "An evil Townsfolk is only created if the Bounty Hunter is still in play after the Kazali acts."
+                "reason": "Злого городянина буде створено лише якщо Мисливець за головами ще є в грі після ходу Казалі."
             },
             {
                 "id": "goon",
@@ -708,7 +708,7 @@
             },
             {
                 "id": "marionette",
-                "reason": "If the Kazali chooses to create a Marionette, they must choose one of their neighbors."
+                "reason": "Якщо Казалі вирішує створити Маріонетку, це має бути один з його сусідів."
             },
             {
                 "id": "huntsman",
