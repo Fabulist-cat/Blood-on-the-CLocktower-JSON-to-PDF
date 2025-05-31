@@ -1,14 +1,14 @@
 [
     {
 	"id": "_meta",
-	"version": 1.06
+	"version": 1.09
     },
     {
         "id": "chambermaid",
         "jinx": [
             {
                 "id": "mathematician",
-                "reason": "The Chambermaid learns if the Mathematician wakes tonight or not, even though the Chambermaid wakes first."
+                "reason": "Покоївка дізнається, чи має сьогодні прокинутись Математик, попри те, що ходить раніше за нього."
             }
         ]
     },
@@ -26,7 +26,7 @@
         "jinx": [
             {
                 "id": "mathematician",
-                "reason": "The Mathematician learns if the Lunatic attacks a different player(s) than the real Demon attacked."
+                "reason": "Математик дізнається, якщо Навіжений атакував не того гравця, що його обрав справжній демон."
             }
         ]
     },
@@ -239,7 +239,7 @@
             },
             {
                 "id": "magician",
-                "reason": "When the Spy sees the Grimoire, the Demon and Magician's character tokens are removed."
+                "reason": "Коли Шпигун бачить Ґримуар, жетони Демона і Чарівника прибираються з нього."
             },
             {
                 "id": "poppygrower",
