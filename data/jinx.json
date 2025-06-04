@@ -419,10 +419,6 @@
                 "reason": "If the Snitch is in play, each Riot player gets an extra 3 bluffs."
             },
             {
-                "id": "saint",
-                "reason": "If a good player nominates and kills the Saint, the Saint's team loses."
-            },
-            {
                 "id": "butler",
                 "reason": "The Butler can not nominate their master."
             },
