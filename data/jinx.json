@@ -1,7 +1,7 @@
 [
     {
 	"id": "_meta",
-	"version": 1.10
+	"version": 2.00
     },
     {
         "id": "chambermaid",
@@ -729,7 +729,7 @@
         "jinx": [
             {
                 "id": "exorcist",
-                "reason": "If the Exorcist chooses the Yaggababble, the Yaggababble ability does not kill tonight."
+                "reason": "Якщо екзорцист обирає Згубазікало, здібність Згубазікала сьогодні не вбиває."
             }
         ]
     },
@@ -774,7 +774,7 @@
             },
             {
                 "id": "pukka",
-                "reason": "The Summoner may choose a player to become the Pukka on the 2nd night."
+                "reason": "Заклинач може обрати на другу ніч гравця, що стане Пакою."
             },
             {
                 "id": "riot",
