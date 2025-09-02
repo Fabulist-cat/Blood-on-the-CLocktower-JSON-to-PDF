@@ -1421,6 +1421,22 @@
         "image": "/build/img/icons/demon/lleech.webp",
         "remindersGlobal": []
     },
+	 {
+        "id": "lordoftyphon_uk",
+        "name": "Лорд Тифонський",
+        "edition": "",
+        "team": "demon",
+        "firstNight": 1,
+        "firstNightReminder": "Розбудіть гравців по боках від демона. Покажіть їм картку "Ви є", жетон міньйона, яким він став, і палець вниз, що означає команду зла.",
+        "otherNight": 31,
+        "otherNightReminder": "Лорд Тифонський вказує на гравця. Той помирає.",
+        "reminders": [
+            "Мертвий"
+        ],
+        "setup": true,
+        "ability": "Щоночі* оберіть гравця: він помирає. [Злі персонажі сидять в ряд. Ви в його центрі. +1 міньйон. від -? до +? чужинців]",
+        "image": "/build/img/icons/demon/lordoftyphon.webp"
+    },
     {
         "id": "lunatic_uk",
         "name": "Навіжений",
@@ -2671,3 +2687,4 @@
         "remindersGlobal": []
     }
 ]
+
