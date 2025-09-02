@@ -1,7 +1,7 @@
 [
     {
 	"id": "_meta",
-	"version": 2.02
+	"version": 2.03
     },
     {
         "id": "chambermaid",
@@ -39,7 +39,7 @@
             },
             {
                 "id": "damsel",
-                "reason": "If a Pit-Hag creates a Damsel, the Storyteller chooses which player it is."
+                "reason": "Якщо Яга створює Панянку, Оповідач вирішує, який гравець стає нею."
             },
             {
                 "id": "politician",
@@ -990,4 +990,5 @@
         ]
     }
 ]
+
 
