@@ -1,7 +1,7 @@
 [
     {
 	"id": "_meta",
-	"version": 2.00
+	"version": 2.02
     },
     {
         "id": "chambermaid",
@@ -366,7 +366,7 @@
             },
             {
                 "id": "balloonist",
-                "reason": "If the Marionette thinks that they are the Balloonist, +1 Outsider might have been added."
+                "reason": "Якщо Маріонетка вважає себе Повітроплавцем, у грі може бути +1 чужинець."
             },
             {
                 "id": "damsel",
@@ -824,7 +824,7 @@
         "jinx": [
             {
                 "id": "butler",
-                "reason": "If the Cannibal gains the Butler ability, the Cannibal learns this."
+                "reason": "Якщо Канібал отримує здібність Дворецького, Канібал про це дізнається."
             },
             {
                 "id": "juggler",
@@ -990,3 +990,4 @@
         ]
     }
 ]
+
