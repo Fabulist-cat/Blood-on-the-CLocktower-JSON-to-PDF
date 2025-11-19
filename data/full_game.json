@@ -1,7 +1,7 @@
 [
     {
 	"id": "_meta",
-	"version": 147.00
+	"version": 148.00
     },
     {
         "id": "acrobat_uk",
@@ -1943,6 +1943,22 @@
         "image": "/build/img/icons/townsfolk/preacher.webp",
         "remindersGlobal": []
     },
+	 {
+        "id": "princess_uk",
+        "name": "Принцеса",
+        "edition": "",
+        "team": "townsfolk",
+        "firstNight": 0,
+        "firstNightReminder": "",
+        "otherNight": 34,
+        "otherNightReminder": "Якщо це був перший день Принцеси, вона номінувала та стратила гравця, демон нікого не вбиває.",
+        "reminders": [
+            "Не вбиває"
+        ],
+        "setup": false,
+        "ability": "Першого вашого дня, якщо ви номінували та стратили гравця, демон вночі не вбиває.",
+        "image": "/build/img/icons/townsfolk/princess.webp"
+    },
     {
         "id": "professor_uk",
         "name": "Професор",
@@ -2687,6 +2703,7 @@
         "remindersGlobal": []
     }
 ]
+
 
 
 
