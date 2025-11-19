@@ -1,7 +1,7 @@
 [
     {
 	"id": "_meta",
-	"version": 2.03
+	"version": 3.04
     },
     {
         "id": "chambermaid",
@@ -67,7 +67,7 @@
             },
             {
                 "id": "ogre",
-                "reason": "If the Pit-Hag turns an evil player into the Ogre, they can't turn good due to their own ability."
+                "reason": "Якщо Яга перетворює злого гравця на Огра, він не може стати добрим через свою здібність."
             }
         ]
     },
@@ -180,7 +180,7 @@
         "jinx": [
             {
                 "id": "gambler",
-                "reason": "If the Lycanthrope is alive and the Gambler kills themself at night, no other players can die tonight."
+                "reason": "Якщо Вовкулака живий, і Азартний Гравець вбиває себе вночі, більше ніхто не може померти тієї ночі."
             },
             {
                 "id": "dagengren",
@@ -323,7 +323,7 @@
         "jinx": [
             {
                 "id": "plaguedoctor",
-                "reason": "If the Plague Doctor is executed and the Storyteller would gain the Boomdandy ability, the Boomdandy ability triggers immediately."
+                "reason": "Якщо Чумного Доктора страчено, і Оповідач мав би отримати здібність Підривника, здібність Підривника одразу ж спрацьовує."
             }
         ]
     },
@@ -990,5 +990,6 @@
         ]
     }
 ]
+
 
 
