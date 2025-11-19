@@ -2653,7 +2653,7 @@
         "remindersGlobal": []
     },
 	{
-        "id": "wizard",
+        "id": "wizard_uk",
         "name": "Чаклун",
         "edition": "",
         "team": "minion",
@@ -2719,6 +2719,7 @@
         "remindersGlobal": []
     }
 ]
+
 
 
 
