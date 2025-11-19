@@ -1,7 +1,7 @@
 [
     {
 	"id": "_meta",
-	"version": 148.00
+	"version": 149.00
     },
     {
         "id": "acrobat_uk",
@@ -1476,7 +1476,7 @@
     },
     {
         "id": "magician_uk",
-        "name": "Чарівник",
+        "name": "Фокусник",
         "edition": "",
         "team": "townsfolk",
         "firstNight": 0,
@@ -2652,6 +2652,22 @@
         "image": "/build/img/icons/minion/witch.webp",
         "remindersGlobal": []
     },
+	{
+        "id": "wizard",
+        "name": "Чаклун",
+        "edition": "",
+        "team": "minion",
+        "firstNight": 24,
+        "firstNightReminder": "Використайте здібність Чаклуна, якщо вона має спрацювати.",
+        "otherNight": 15,
+        "otherNightReminder": "Використайте здібність Чаклуна, якщо вона має спрацювати.",
+        "reminders": [
+            "?"
+        ],
+        "setup": false,
+        "ability": "Один раз за гру, ви можете загадати бажання. Якщо воно здійсниться, у нього може бути ціна та ознаки його природи.",
+        "image": "/build/img/icons/minion/wizard.webp"
+    },
     {
         "id": "yaggababble_uk",
         "name": "Згубазікало",
@@ -2703,6 +2719,7 @@
         "remindersGlobal": []
     }
 ]
+
 
 
 
