@@ -1,7 +1,7 @@
 [
     {
 	"id": "_meta",
-	"version": 149.01
+	"version": 149.02
     },
     {
         "id": "acrobat_uk",
@@ -18,7 +18,7 @@
         ],
         "setup": false,
         "ability": "Щоночі* оберіть гравця. Якщо він є, або цієї ночі стане отруєним чи п'яним, ви помрете.",
-        "image": "/build/img/icons/outsider/acrobat.webp",
+        "image": "/img/icons/outsider/acrobat.webp",
         "remindersGlobal": []
     },
     {
@@ -36,7 +36,7 @@
         ],
         "setup": false,
         "ability": "Ви маєте здібність міньона не в грі.",
-        "image": "/build/img/icons/townsfolk/alchemist.webp"
+        "image": "/img/icons/townsfolk/alchemist.webp"
     },
     {
         "id": "alhadikhia_uk",
@@ -56,7 +56,7 @@
         ],
         "setup": false,
         "ability": "Щоночі* оберіть трьох гравців (всі знають кого): кожен таємно обирає, бути йому живим чи мертвим, але якщо всі живі - всі помирають.",
-        "image": "/build/img/icons/demon/alhadikhia.webp",
+        "image": "/img/icons/demon/alhadikhia.webp",
         "remindersGlobal": []
     },
     {
@@ -71,7 +71,7 @@
         "reminders": [],
         "setup": false,
         "ability": "Щодня, якщо ви з першого разу публічно вгадаєте, хто з гравців є міньйонами, а хто – демонами, добро перемагає.",
-        "image": "/build/img/icons/townsfolk/alsaahir.webp",
+        "image": "/img/icons/townsfolk/alsaahir.webp",
         "remindersGlobal": []
     },
     {
@@ -88,7 +88,7 @@
         ],
         "setup": false,
         "ability": "Ви не знаєте своєї здібності. Щодня спробуйте (приватно) вгадати її; ви дізнаєтесь, наскільки близько вгадали.",
-        "image": "/build/img/icons/townsfolk/amnesiac.webp",
+        "image": "/img/icons/townsfolk/amnesiac.webp",
         "remindersGlobal": []
     },
     {
@@ -103,7 +103,7 @@
         "name": "Ангел",
         "team": "fabled",
         "ability": "Щось погане станеться з тим, через кого помер новий гравець.",
-        "image": "/build/img/icons/fabled/angel.webp",
+        "image": "/img/icons/fabled/angel.webp",
         "remindersGlobal": []
     },
     {
@@ -120,7 +120,7 @@
         ],
         "setup": false,
         "ability": "Першої ночі ви отримуєте здібність городянина (якщо за добро) чи міньйона (якщо за зло).",
-        "image": "/build/img/icons/traveller/apprentice.webp",
+        "image": "/img/icons/traveller/apprentice.webp",
         "remindersGlobal": []
     },
     {
@@ -137,7 +137,7 @@
         ],
         "setup": false,
         "ability": "Одного разу за гру, протягом дня, приватно задайте Оповідачу будь-яке запитання, на яке можна відповісти “так” або “ні”",
-        "image": "/build/img/icons/townsfolk/artist.webp",
+        "image": "/img/icons/townsfolk/artist.webp",
         "remindersGlobal": []
     },
     {
@@ -155,7 +155,7 @@
         ],
         "setup": false,
         "ability": "Раз за гру, вночі*, оберіть гравця: він помирає, навіть якщо чомусь не може.",
-        "image": "/build/img/icons/minion/assassin.webp",
+        "image": "/img/icons/minion/assassin.webp",
         "remindersGlobal": []
     },
     {
@@ -170,7 +170,7 @@
         "reminders": [],
         "setup": true,
         "ability": "Оповідач може порушувати правила і, якщо страчено Оповідача, добро перемагає, навіть якщо ви мертві. [Немає злих персонажів]",
-        "image": "/build/img/icons/townsfolk/atheist.webp",
+        "image": "/img/icons/townsfolk/atheist.webp",
         "remindersGlobal": []
     },
     {
@@ -187,7 +187,7 @@
         ],
         "setup": true,
         "ability": "Щоночі ви дізнаєтесь гравця, персонаж якого знаходиться в в різних розділах з персонажем попереднього. [+0 чи +1 чужинець]",
-        "image": "/build/img/icons/townsfolk/balloonist.webp",
+        "image": "/img/icons/townsfolk/balloonist.webp",
         "remindersGlobal": []
     },
     {
@@ -204,7 +204,7 @@
         ],
         "setup": false,
         "ability": "Як вас вбиває демон, всі дізнаються про це. З цього моменту ви можете номінувати двічі на день і голосувати двічі за номінацію.",
-        "image": "/build/img/icons/townsfolk/banshee.webp",
+        "image": "/img/icons/townsfolk/banshee.webp",
         "remindersGlobal": []
     },
     {
@@ -221,7 +221,7 @@
         ],
         "setup": false,
         "ability": "В ніч того дня, коли ви померли, демон може обрати двох гравців (не іншого демона); вони міняються персонажами.",
-        "image": "/build/img/icons/outsider/barber.webp",
+        "image": "/img/icons/outsider/barber.webp",
         "remindersGlobal": []
     },
     {
@@ -239,7 +239,7 @@
         ],
         "setup": false,
         "ability": "Щоночі, до сутінок: 1) один гравець стає тверезим, здоровим і отримує правдиві дані, або 2) його здібність спрацьовує двічі. Він дізнається, що саме відбувається.",
-        "image": "/build/img/icons/traveller/barista.webp",
+        "image": "/img/icons/traveller/barista.webp",
         "remindersGlobal": []
     },
     {
@@ -254,7 +254,7 @@
         "reminders": [],
         "setup": true,
         "ability": "В грі є додаткові чужинці [+2 чужинці]",
-        "image": "/build/img/icons/minion/baron.webp",
+        "image": "/img/icons/minion/baron.webp",
         "remindersGlobal": []
     },
     {
@@ -269,7 +269,7 @@
         "reminders": [],
         "setup": false,
         "ability": "Вам потрібен жетон голосу, щоб голосувати. Мертві гравці можуть віддати вам свій; тоді ви дізнаєтесь їх команду. Ти завжди тверезий і здоровий.",
-        "image": "/build/img/icons/traveller/beggar.webp",
+        "image": "/img/icons/traveller/beggar.webp",
         "remindersGlobal": []
     },
     {
@@ -287,7 +287,7 @@
         ],
         "setup": false,
         "ability": "Лише Оповідач може номінувати. Щодня має бути номінований хоча б один гравець з кожної команди.",
-        "image": "/build/img/icons/traveller/bishop.webp",
+        "image": "/img/icons/traveller/bishop.webp",
         "remindersGlobal": []
     },
     {
@@ -305,7 +305,7 @@
         ],
         "setup": false,
         "ability": "Раз за гру, вночі, оберіть мертвого гравця: він відновлює свою здібність до вечора.",
-        "image": "/build/img/icons/traveller/bonecollector.webp",
+        "image": "/img/icons/traveller/bonecollector.webp",
         "remindersGlobal": []
     },
     {
@@ -320,7 +320,7 @@
         "reminders": [],
         "setup": false,
         "ability": "Якщо вас страчено, то всі, окрім трьох гравців помирають. Після зворотного відліку від 10, гравець, на якого вказує більшість гравців, помирає.",
-        "image": "/build/img/icons/minion/boomdandy.webp",
+        "image": "/img/icons/minion/boomdandy.webp",
         "remindersGlobal": []
     },
     {
@@ -332,7 +332,7 @@
         "name": "Контрабандист",
         "team": "fabled",
         "ability": "Цей скрипт має інші правила або саморобних персонажей.",
-        "image": "/build/img/icons/fabled/bootlegger.webp",
+        "image": "/img/icons/fabled/bootlegger.webp",
         "remindersGlobal": []
     },
     {
@@ -349,7 +349,7 @@
         ],
         "setup": true,
         "ability": "Ви одразу знаєте одного злого гравця; якщо він помирає, ви дізнаєтесь наступного. [1 з городян - злий]",
-        "image": "/build/img/icons/townsfolk/bountyhunter.webp",
+        "image": "/img/icons/townsfolk/bountyhunter.webp",
         "remindersGlobal": []
     },
     {
@@ -361,7 +361,7 @@
         "name": "Буддист",
         "team": "fabled",
         "ability": "Перші дві хвилини дня гравці-ветерани не можуть говорити.",
-        "image": "/build/img/icons/fabled/buddhist.webp",
+        "image": "/img/icons/fabled/buddhist.webp",
         "remindersGlobal": []
     },
     {
@@ -378,7 +378,7 @@
         ],
         "setup": false,
         "ability": "Щоночі оберіть гравця (не себе): завтра їхній голос рахується за 3.",
-        "image": "/build/img/icons/traveller/bureaucrat.webp",
+        "image": "/img/icons/traveller/bureaucrat.webp",
         "remindersGlobal": []
     },
     {
@@ -393,7 +393,7 @@
         "reminders": [],
         "setup": false,
         "ability": "Щодня, після першої страти, ви можете номінувати ще раз.",
-        "image": "/build/img/icons/traveller/butcher.webp",
+        "image": "/img/icons/traveller/butcher.webp",
         "remindersGlobal": []
     },
     {
@@ -408,7 +408,7 @@
         "reminders": ["Хазяїн"],
         "setup": false,
         "ability": "Щоночі оберіть гравця (не себе); завтра ви можете голосувати лише якщо він також голосує.",
-        "image": "/build/img/icons/outsider/butler.webp",
+        "image": "/img/icons/outsider/butler.webp",
         "remindersGlobal": []
     },
     {
@@ -426,7 +426,7 @@
         ],
         "setup": false,
         "ability": "Ви маєте здібність останнього померлого від страти гравця. Якщо від страти помер злий гравець, вас отруєно, доки не стратять нового гравця.",
-        "image": "/build/img/icons/townsfolk/cannibal.webp",
+        "image": "/img/icons/townsfolk/cannibal.webp",
         "remindersGlobal": []
     },
     {
@@ -443,7 +443,7 @@
         ],
         "setup": false,
         "ability": "Щоночі оберіть гравця і доброго персонажа: гравець \"одержимий\" тим, що він - цей персонаж, інакше його може бути страчено.",
-        "image": "/build/img/icons/minion/cerenovus.webp",
+        "image": "/img/icons/minion/cerenovus.webp",
         "remindersGlobal": []
     },
     {
@@ -458,7 +458,7 @@
         "reminders": [],
         "setup": false,
         "ability": "Щоночі оберіть двох гравців (не себе); ви дізнаєтесь, скільки з них прокинулися через їхню здібність.",
-        "image": "/build/img/icons/townsfolk/chambermaid.webp",
+        "image": "/img/icons/townsfolk/chambermaid.webp",
         "remindersGlobal": []
     },
     {
@@ -473,7 +473,7 @@
         "reminders": [],
         "setup": false,
         "ability": "Ви починаєте гру знаючи, скільки пар злих персонажів сидять поруч.",
-        "image": "/build/img/icons/townsfolk/chef.webp",
+        "image": "/img/icons/townsfolk/chef.webp",
         "remindersGlobal": []
     },
     {
@@ -488,7 +488,7 @@
         "reminders": [],
         "setup": true,
         "ability": "Якщо Демон вб'є Короля, ти дізнаєшся хто Демон. [+ Король]",
-        "image": "/build/img/icons/townsfolk/choirboy.webp",
+        "image": "/img/icons/townsfolk/choirboy.webp",
         "remindersGlobal": []
     },
     {
@@ -503,7 +503,7 @@
         "reminders": [],
         "setup": false,
         "ability": "Ви починаєте гру знаючи, за скільки кроків від демона сидить найближчий міньйон.",
-        "image": "/build/img/icons/townsfolk/clockmaker.webp",
+        "image": "/img/icons/townsfolk/clockmaker.webp",
         "remindersGlobal": []
     },
     {
@@ -523,7 +523,7 @@
         ],
         "setup": false,
         "ability": "Раз за гру, вночі, оберіть персонажа; обраний персонаж стає п'яним на три ночі й три дні.",
-        "image": "/build/img/icons/townsfolk/courtier.webp",
+        "image": "/img/icons/townsfolk/courtier.webp",
         "remindersGlobal": []
     },
     {
@@ -538,7 +538,7 @@
         "reminders": [],
         "setup": false,
         "ability": "Щоночі ви переходите в команду одного з ваших живих сусідів. Якщо всі добрі гравці приєднуються до вашого культу - ваша команда перемагає.",
-        "image": "/build/img/icons/townsfolk/cultleader.webp",
+        "image": "/img/icons/townsfolk/cultleader.webp",
         "remindersGlobal": []
     },
     {
@@ -555,7 +555,7 @@
         ],
         "setup": false,
         "ability": "Всі міньони знають, що ви є в грі. Якщо міньон з першої спроби публічно вгадає, хто ви, ваша команда програє.",
-        "image": "/build/img/icons/outsider/damsel.webp",
+        "image": "/img/icons/outsider/damsel.webp",
         "remindersGlobal": []
     },
     {
@@ -569,7 +569,7 @@
         "name": "Deus ex Fiasco",
         "team": "fabled",
         "ability": "Раз за гру Оповідач зробить \"помилку\", виправить її та оповістить усіх.",
-        "image": "/build/img/icons/fabled/deusexfiasco.webp",
+        "image": "/img/icons/fabled/deusexfiasco.webp",
         "remindersGlobal": []
     },
     {
@@ -584,7 +584,7 @@
         "reminders": [],
         "setup": false,
         "ability": "Якщо сьогодні ви були смішними, вас неможливо відправити у вигнання.",
-        "image": "/build/img/icons/traveller/deviant.webp",
+        "image": "/img/icons/traveller/deviant.webp",
         "remindersGlobal": []
     },
     {
@@ -601,7 +601,7 @@
         ],
         "setup": false,
         "ability": "Щоночі обирайте гравця (відмінного від попередньої ночі). Якщо його завтра стратять - він не помре.",
-        "image": "/build/img/icons/minion/devilsadvocate.webp",
+        "image": "/img/icons/minion/devilsadvocate.webp",
         "remindersGlobal": []
     },
     {
@@ -614,7 +614,7 @@
         "name": "Джин",
         "team": "fabled",
         "ability": "Дотримуйся особливого правила Джина. Всі гравці знають це правило.",
-        "image": "/build/img/icons/fabled/djinn.webp",
+        "image": "/img/icons/fabled/djinn.webp",
         "remindersGlobal": []
     },
     {
@@ -626,7 +626,7 @@
         "name": "Прирекатель",
         "team": "fabled",
         "ability": "Якщо 4 або більше гравців в живих, кожен живий гравець може публічно раз за гру обрати, щоб їх союзник помер.",
-        "image": "/build/img/icons/fabled/doomsayer.webp",
+        "image": "/img/icons/fabled/doomsayer.webp",
         "remindersGlobal": []
     },
     {
@@ -641,7 +641,7 @@
         "reminders": [],
         "setup": false,
         "ability": "Щоночі оберіть гравця (не себе і не подорожнього): ви дізнаєтесь 1 хорошого та 1 злого персонажа, з яких один є персонажем цього гравця.",
-        "image": "/build/img/icons/townsfolk/dreamer.webp",
+        "image": "/img/icons/townsfolk/dreamer.webp",
         "remindersGlobal": []
     },
     {
@@ -665,7 +665,7 @@
         ],
         "setup": true,
         "ability": "Ви не знаєте, що ви П’янчуга. Ви вважаєте, що ви городянин, але насправді це не так.",
-        "image": "/build/img/icons/outsider/drunk.webp"
+        "image": "/img/icons/outsider/drunk.webp"
     },
     {
         "id": "duchess_uk",
@@ -680,7 +680,7 @@
         "name": "Княгиня",
         "team": "fabled",
         "ability": "Кожного дня 3 гравця можуть відвідати тебе. Вночі* кожен з відвідавших дізнається скільки з них за зло; але один отримає хибні дані",
-        "image": "/build/img/icons/fabled/duchess.webp",
+        "image": "/img/icons/fabled/duchess.webp",
         "remindersGlobal": []
     },
     {
@@ -695,7 +695,7 @@
         "reminders": [],
         "setup": false,
         "ability": "Щоночі ви дізнаєтесь, скільки з двох ваших живих сусідів є злими.",
-        "image": "/build/img/icons/townsfolk/empath.webp",
+        "image": "/img/icons/townsfolk/empath.webp",
         "remindersGlobal": []
     },
     {
@@ -712,7 +712,7 @@
         ],
         "setup": false,
         "ability": "Раз за гру, вночі, оберіть які міньони або який демон є у грі.",
-        "image": "/build/img/icons/townsfolk/engineer.webp",
+        "image": "/img/icons/townsfolk/engineer.webp",
         "remindersGlobal": []
     },
     {
@@ -729,7 +729,7 @@
         ],
         "setup": false,
         "ability": "Ви й гравець протилежної команди знаєте одне одного. Якщо доброго з вас страчено, зло перемагає. Добро не може перемогти, доки злий близнюк живий.",
-        "image": "/build/img/icons/minion/eviltwin.webp",
+        "image": "/img/icons/minion/eviltwin.webp",
         "remindersGlobal": []
     },
     {
@@ -746,7 +746,7 @@
         ],
         "setup": false,
         "ability": "Щоночі* обирайте гравця (відмінного від попередньої ночі): якщо обрано демона, він дізнається, хто ви, і не діє вночі.",
-        "image": "/build/img/icons/townsfolk/exorcist.webp",
+        "image": "/img/icons/townsfolk/exorcist.webp",
         "remindersGlobal": []
     },
     {
@@ -764,7 +764,7 @@
         ],
         "setup": true,
         "ability": "Щоночі* оберіть гравця; він помирає. Перший чужинець, якого ви вбиваєте, стає Фан Ґу, а ви помираєте замість нього [+1 чужинець].",
-        "image": "/build/img/icons/demon/fanggu.webp",
+        "image": "/img/icons/demon/fanggu.webp",
         "remindersGlobal": []
     },
     {
@@ -779,7 +779,7 @@
         "reminders": [],
         "setup": false,
         "ability": "Якщо ви помираєте вночі - живий добрий гравець стає фермером.",
-        "image": "/build/img/icons/townsfolk/farmer.webp",
+        "image": "/img/icons/townsfolk/farmer.webp",
         "remindersGlobal": []
     },
     {
@@ -796,7 +796,7 @@
         ],
         "setup": false,
         "ability": "Щоночі обирайте гравця; якщо ви його номінували і стратили, його команда програє. Всі гравці знають, коли ви обираєте нового гравця.",
-        "image": "/build/img/icons/minion/fearmonger.webp",
+        "image": "/img/icons/minion/fearmonger.webp",
         "remindersGlobal": []
     },
     {
@@ -810,7 +810,7 @@
         "name": "Жартівник",
         "team": "fabled",
         "ability": "Раз за гру один з гравців може отримати хибні дані",
-        "image": "/build/img/icons/fabled/fibbin.webp",
+        "image": "/img/icons/fabled/fibbin.webp",
         "remindersGlobal": []
     },
     {
@@ -822,7 +822,7 @@
         "name": "Скрипач",
         "team": "fabled",
         "ability": "Раз за гру, Демон обирає гравця іншої команди; всі голосують хто з них переможе",
-        "image": "/build/img/icons/fabled/fiddler.webp",
+        "image": "/img/icons/fabled/fiddler.webp",
         "remindersGlobal": []
     },
     {
@@ -839,7 +839,7 @@
         ],
         "setup": false,
         "ability": "Один раз за гру, вдень, ви можете усамітнитись з Оповідачем, і він дасть вам пораду, як перемогти.",
-        "image": "/build/img/icons/townsfolk/fisherman.webp",
+        "image": "/img/icons/townsfolk/fisherman.webp",
         "remindersGlobal": []
     },
     {
@@ -857,7 +857,7 @@
         ],
         "setup": false,
         "ability": "Щоночі* дізнайтесь, чи голосував сьогодні демон.",
-        "image": "/build/img/icons/townsfolk/flowergirl.webp",
+        "image": "/img/icons/townsfolk/flowergirl.webp",
         "remindersGlobal": []
     },
     {
@@ -874,7 +874,7 @@
         ],
         "setup": false,
         "ability": "Першого разу, коли ви помираєте, ви не помираєте.",
-        "image": "/build/img/icons/townsfolk/fool.webp",
+        "image": "/img/icons/townsfolk/fool.webp",
         "remindersGlobal": []
     },
     {
@@ -891,7 +891,7 @@
         ],
         "setup": false,
         "ability": "Щоночі оберіть двох гравців. Ви дізнаєтесь, чи є один з них демоном. Один з хороших гравців також здаватиметься для вас демоном.",
-        "image": "/build/img/icons/townsfolk/fortuneteller.webp",
+        "image": "/img/icons/townsfolk/fortuneteller.webp",
         "remindersGlobal": []
     },
     {
@@ -908,7 +908,7 @@
         ],
         "setup": false,
         "ability": "Щоночі* оберіть гравця та вгадайте його персонажа. Якщо вгадаєте неправильно, то помрете.",
-        "image": "/build/img/icons/townsfolk/gambler.webp",
+        "image": "/img/icons/townsfolk/gambler.webp",
         "remindersGlobal": []
     },
     {
@@ -923,7 +923,7 @@
         "reminders": [],
         "setup": false,
         "ability": "Раз в день ти можете вбити одного свого живого сусіда за згоди іншого.",
-        "image": "/build/img/icons/traveller/gangster.webp",
+        "image": "/img/icons/traveller/gangster.webp",
         "remindersGlobal": []
     },
     {
@@ -938,7 +938,7 @@
         "reminders": [],
         "setup": false,
         "ability": "Щоночі ви дізнаєтесь, яка сторона, на думку Оповідача, перемагає: добро, зло, чи жодна.",
-        "image": "/build/img/icons/townsfolk/general.webp",
+        "image": "/img/icons/townsfolk/general.webp",
         "remindersGlobal": []
     },
     {
@@ -955,7 +955,7 @@
         ],
         "setup": false,
         "ability": "Якщо, коли вас номінують, ви публічно оголошуєте себе Гобліном, і після цього вас страчено, то ваша команда перемагає.",
-        "image": "/build/img/icons/minion/goblin.webp",
+        "image": "/img/icons/minion/goblin.webp",
         "remindersGlobal": []
     },
     {
@@ -973,7 +973,7 @@
         ],
         "setup": true,
         "ability": "Ви одразу знаєте, які чужинці є у грі. Якщо чужинець помирає, цієї ночі ви обираєте гравця; той помирає. [-1 або +1 чужинець]",
-        "image": "/build/img/icons/minion/godfather.webp",
+        "image": "/img/icons/minion/godfather.webp",
         "remindersGlobal": []
     },
     {
@@ -990,7 +990,7 @@
         ],
         "setup": false,
         "ability": "Ви можете номінувати лише один раз за гру. Якщо номінований вами гравець – не демон, він помирає.",
-        "image": "/build/img/icons/outsider/golem.webp",
+        "image": "/img/icons/outsider/golem.webp",
         "remindersGlobal": []
     },
     {
@@ -1007,7 +1007,7 @@
         ],
         "setup": false,
         "ability": "Щоночі перший гравець, що обрав вас своєю здібністю, п'яніє до сутінок. Ви переходите на його бік.",
-        "image": "/build/img/icons/outsider/goon.webp",
+        "image": "/img/icons/outsider/goon.webp",
         "remindersGlobal": []
     },
     {
@@ -1024,7 +1024,7 @@
         ],
         "setup": false,
         "ability": "Щодня ви можете зробити публічне твердження. Якщо воно істинне, вночі хтось помре.",
-        "image": "/build/img/icons/townsfolk/gossip.webp",
+        "image": "/img/icons/townsfolk/gossip.webp",
         "remindersGlobal": []
     },
     {
@@ -1041,7 +1041,7 @@
         ],
         "setup": false,
         "ability": "Ви одразу знаєте одного гравця та його персонажа. Якщо його вбиває демон - ви теж помираєте.",
-        "image": "/build/img/icons/townsfolk/grandmother.webp",
+        "image": "/img/icons/townsfolk/grandmother.webp",
         "remindersGlobal": []
     },
     {
@@ -1056,7 +1056,7 @@
         "reminders": [],
         "setup": false,
         "ability": "Кожного дня, після першого голсування, ви можете обрати гравця, що голосував; той помирає.",
-        "image": "/build/img/icons/traveller/gunslinger.webp",
+        "image": "/img/icons/traveller/gunslinger.webp",
         "remindersGlobal": []
     },
     {
@@ -1073,7 +1073,7 @@
         ],
         "setup": false,
         "ability": "Щоночі* оберіть живого гравця: якщо він згоден, ви дізнаєтесь їх персонажа, але ви обидва можете померти.",
-        "image": "/build/img/icons/traveller/harlot.webp",
+        "image": "/img/icons/traveller/harlot.webp",
         "remindersGlobal": []
     },
     {
@@ -1091,7 +1091,7 @@
         ],
         "setup": false,
         "ability": "Щоночі оберіть двох гравців: перший одержимий тим, що другий - злий, інакше один з них чи обидва можуть померти.",
-        "image": "/build/img/icons/minion/harpy.webp",
+        "image": "/img/icons/minion/harpy.webp",
         "remindersGlobal": []
     },
     {
@@ -1108,7 +1108,7 @@
         ],
         "setup": false,
         "ability": "Якщо ви помираєте, міньйони і демони вночі зможуть обрати, якими міньйонами чи демонами їм бути.",
-        "image": "/build/img/icons/outsider/hatter.webp",
+        "image": "/img/icons/outsider/hatter.webp",
         "remindersGlobal": []
     },
     {
@@ -1122,7 +1122,7 @@
         "name": "Бібліотекар Аду",
         "team": "fabled",
         "ability": "Щось погане трапиться з тим, хто заговорить коли Оповідач попросив тиші",
-        "image": "/build/img/icons/fabled/hellslibrarian.webp",
+        "image": "/img/icons/fabled/hellslibrarian.webp",
         "remindersGlobal": []
     },
     {
@@ -1137,7 +1137,7 @@
         "reminders": [],
         "setup": false,
         "ability": "Ті, хто перемагає - програють, а ті, хто програли - перемагають, навіть якщо ви мертві.",
-        "image": "/build/img/icons/outsider/heretic.webp",
+        "image": "/img/icons/outsider/heretic.webp",
         "remindersGlobal": []
     },
     {
@@ -1152,7 +1152,7 @@
         "reminders": [],
         "setup": false,
         "ability": "Щоночі ви дізнаєтесь з яким гравцем, на думку Оповідача, вам варто завтра поговорити.",
-        "image": "/build/img/icons/townsfolk/highpriestess.webp",
+        "image": "/img/icons/townsfolk/highpriestess.webp",
         "remindersGlobal": []
     },
     {
@@ -1169,7 +1169,7 @@
         ],
         "setup": true,
         "ability": "Раз за гру, вночі, оберіть живого гравця: якщо обрано Панянку, вона стає одним з городян не в грі. [+Панянка]",
-        "image": "/build/img/icons/townsfolk/huntsman.webp",
+        "image": "/img/icons/townsfolk/huntsman.webp",
         "remindersGlobal": []
     },
     {
@@ -1186,7 +1186,7 @@
         ],
         "setup": false,
         "ability": "Щоночі* оберіть гравця; його персонаж помирає. Якщо ви таким чином вбиваєте себе, міньйон стає Імпом.",
-        "image": "/build/img/icons/demon/imp.webp",
+        "image": "/img/icons/demon/imp.webp",
         "remindersGlobal": []
     },
     {
@@ -1204,7 +1204,7 @@
         ],
         "setup": false,
         "ability": "Щоночі* оберіть 2 гравців: вони не можуть померти цієї ночі, проте один з них стає п'яним до сутінок.",
-        "image": "/build/img/icons/townsfolk/innkeeper.webp",
+        "image": "/img/icons/townsfolk/innkeeper.webp",
         "remindersGlobal": []
     },
     {
@@ -1222,7 +1222,7 @@
         ],
         "setup": false,
         "ability": "Ви починаєте гру знаючи, що один з двох гравців є певним міньйоном.",
-        "image": "/build/img/icons/townsfolk/investigator.webp",
+        "image": "/img/icons/townsfolk/investigator.webp",
         "remindersGlobal": []
     },
     {
@@ -1239,7 +1239,7 @@
         ],
         "setup": false,
         "ability": "Раз за гру, коли номіновано іншого гравця, ви можете примусово стратити його чи провалити номінацію.",
-        "image": "/build/img/icons/traveller/judge.webp",
+        "image": "/img/icons/traveller/judge.webp",
         "remindersGlobal": []
     },
     {
@@ -1254,14 +1254,14 @@
         "reminders": ["Правильно"],
         "setup": false,
         "ability": "Протягом першого дня публічно вгадайте персонажів 5 або менше гравців. Наступної ночі ви дізнаєтесь, скільки ваших здогадок було правильними.",
-        "image": "/build/img/icons/townsfolk/juggler.webp",
+        "image": "/img/icons/townsfolk/juggler.webp",
         "remindersGlobal": []
     },
     {
         "id": "kazali_uk",
         "name": "Казалі",
         "team": "demon",
-        "image": "/build/img/icons/demon/kazali.webp",
+        "image": "/img/icons/demon/kazali.webp",
         "ability": "Щоночі* оберіть гравця: його персонаж помирає. [Ви обираєте, хто буде вашими міньйонами. Від -? до +? чужинців]",
         "setup": true,
         "firstNight": 2,
@@ -1285,7 +1285,7 @@
         "reminders": [],
         "setup": false,
         "ability": "Щоночі, якщо живих не більше мертвих, дізнайся живого персонажа. Демон знає хто ти.",
-        "image": "/build/img/icons/townsfolk/king.webp",
+        "image": "/img/icons/townsfolk/king.webp",
         "remindersGlobal": []
     },
     {
@@ -1300,7 +1300,7 @@
         "reminders": [],
         "setup": false,
         "ability": "Коли ви дізнаєтесь про свою смерть, то маєте публічно обрати гравця: якщо він злий - ваша команда програє.",
-        "image": "/build/img/icons/outsider/klutz.webp",
+        "image": "/img/icons/outsider/klutz.webp",
         "remindersGlobal": []
     },
     {
@@ -1318,7 +1318,7 @@
         ],
         "setup": false,
         "ability": "Ви починаєте гру знаючи двох гравців, жоден з яких не є демоном.",
-        "image": "/build/img/icons/townsfolk/knight.webp",
+        "image": "/img/icons/townsfolk/knight.webp",
         "remindersGlobal": []
     },
     {
@@ -1336,7 +1336,7 @@
         ],
         "setup": true,
         "ability": "Щоночі* може померти гравець. Якщо голосує лише зло, страта буде невдалою. Ви також здаєтесь мінйоном. [Більшість гравців - Легіон]",
-        "image": "/build/img/icons/demon/legion.webp",
+        "image": "/img/icons/demon/legion.webp",
         "remindersGlobal": []
     },
     {
@@ -1358,7 +1358,7 @@
         ],
         "setup": false,
         "ability": "Якщо страчено більше одного доброго гравця - зло перемагає. Всі гравці знають, що ви у грі. Наприкінці 5-го дня зло перемагає.",
-        "image": "/build/img/icons/demon/leviathan.webp",
+        "image": "/img/icons/demon/leviathan.webp",
         "remindersGlobal": []
     },
     {
@@ -1376,7 +1376,7 @@
         ],
         "setup": false,
         "ability": "Ви починаєте гру знаючи, що один з двох гравців є певним чужинцем (чи що у грі вони відсутні).",
-        "image": "/build/img/icons/townsfolk/librarian.webp",
+        "image": "/img/icons/townsfolk/librarian.webp",
         "remindersGlobal": []
     },
     {
@@ -1401,7 +1401,7 @@
         ],
         "setup": true,
         "ability": "Щоночі Міньони вирішують хто няньчить Почварку і є \"демоном\". Щоночі* може померти гравець. [+1 Міньон]",
-        "image": "/build/img/icons/demon/lilmonsta.webp"
+        "image": "/img/icons/demon/lilmonsta.webp"
     },
     {
         "id": "lleech_uk",
@@ -1418,7 +1418,7 @@
         ],
         "setup": false,
         "ability": "Щоночі* оберіть гравця: він помирає. На початку гри оберіть живого гравця: його отруєно. Якщо він помре - і лише тоді - ви помираєте.",
-        "image": "/build/img/icons/demon/lleech.webp",
+        "image": "/img/icons/demon/lleech.webp",
         "remindersGlobal": []
     },
 	 {
@@ -1435,7 +1435,7 @@
         ],
         "setup": true,
         "ability": "Щоночі* оберіть гравця: він помирає. [Злі персонажі сидять в ряд. Ви в його центрі. +1 міньйон. від -? до +? чужинців]",
-        "image": "/build/img/icons/demon/lordoftyphon.webp"
+        "image": "/img/icons/demon/lordoftyphon.webp"
     },
     {
         "id": "lunatic_uk",
@@ -1453,7 +1453,7 @@
         ],
         "setup": false,
         "ability": "Вам здається, що ви демон, але це не так. Демон знає, хто ви, і кого ви обрали вночі.",
-        "image": "/build/img/icons/outsider/lunatic.webp",
+        "image": "/img/icons/outsider/lunatic.webp",
         "remindersGlobal": []
     },
     {
@@ -1471,7 +1471,7 @@
         ],
         "setup": false,
         "ability": "Щоночі* оберіть живого гравця: якщо він добрий, то помре, але цієї ночі демон не зможе вбити. Один з хороших гравців здаватиметься вам злим.",
-        "image": "/build/img/icons/townsfolk/lycanthrope.webp",
+        "image": "/img/icons/townsfolk/lycanthrope.webp",
         "remindersGlobal": []
     },
     {
@@ -1486,7 +1486,7 @@
         "reminders": [],
         "setup": false,
         "ability": "Міньонам здається, що ви - демон. Демону здається, що ви - міньон.",
-        "image": "/build/img/icons/townsfolk/magician.webp",
+        "image": "/img/icons/townsfolk/magician.webp",
         "remindersGlobal": []
     },
     {
@@ -1510,7 +1510,7 @@
         ],
         "setup": true,
         "ability": "Вам здається, що ви - добрий персонаж, але це не так. Демон знає, хто ви. [Ви сидите поруч з демоном]",
-        "image": "/build/img/icons/minion/marionette.webp"
+        "image": "/img/icons/minion/marionette.webp"
     },
     {
         "id": "mastermind_uk",
@@ -1524,7 +1524,7 @@
         "reminders": [],
         "setup": false,
         "ability": "Якщо демона страчено (що завершило б гру), гра продовжується на ще один день. Якщо цього дня гравця буде страчено, його команда програє.",
-        "image": "/build/img/icons/minion/mastermind.webp",
+        "image": "/img/icons/minion/mastermind.webp",
         "remindersGlobal": []
     },
     {
@@ -1541,7 +1541,7 @@
         ],
         "setup": false,
         "ability": "Щоночі ви дізнаєтесь, у скількох гравців здібності працювали неправильно (від світанку).",
-        "image": "/build/img/icons/townsfolk/mathematician.webp",
+        "image": "/img/icons/townsfolk/mathematician.webp",
         "remindersGlobal": []
     },
     {
@@ -1556,7 +1556,7 @@
         "reminders": [],
         "setup": false,
         "ability": "Щодня ви можете поміняти до трьох пар гравців місцями. Гравці не можуть вставати зі своїх місць для приватних розмов.",
-        "image": "/build/img/icons/traveller/matron.webp",
+        "image": "/img/icons/traveller/matron.webp",
         "remindersGlobal": []
     },
     {
@@ -1571,7 +1571,7 @@
         "reminders": [],
         "setup": false,
         "ability": "Якщо живими залишились лише три гравці, і нікого не страчено, ваша команда перемагає. Якщо ви маєте померти вночі, замість вас може померти інший персонаж.",
-        "image": "/build/img/icons/townsfolk/mayor.webp",
+        "image": "/img/icons/townsfolk/mayor.webp",
         "remindersGlobal": []
     },
     {
@@ -1589,7 +1589,7 @@
         ],
         "setup": false,
         "ability": "На початку гри ви знаєте таємне слово. Перший добрий гравець, що скаже його, вночі стане злим.",
-        "image": "/build/img/icons/minion/mezepheles.webp",
+        "image": "/img/icons/minion/mezepheles.webp",
         "remindersGlobal": []
     },
     {
@@ -1606,7 +1606,7 @@
         ],
         "setup": false,
         "ability": "Коли міньон вмирає від страти, всі інші гравці (окрім подорожніх) п'яніють до завтрашнього вечора.",
-        "image": "/build/img/icons/townsfolk/minstrel.webp",
+        "image": "/img/icons/townsfolk/minstrel.webp",
         "remindersGlobal": []
     },
     {
@@ -1623,7 +1623,7 @@
         ],
         "setup": false,
         "ability": "Щоночі* оберіть гравця (не себе). Демон не може вплинути на нього цієї ночі",
-        "image": "/build/img/icons/townsfolk/monk.webp",
+        "image": "/img/icons/townsfolk/monk.webp",
         "remindersGlobal": []
     },
     {
@@ -1640,7 +1640,7 @@
         ],
         "setup": false,
         "ability": "Коли ви дізнаєтесь про свою смерть, публічно оберіть живого гравця. Якщо він в добрій команді, то помре цієї ночі.",
-        "image": "/build/img/icons/outsider/moonchild.webp",
+        "image": "/img/icons/outsider/moonchild.webp",
         "remindersGlobal": []
     },
     {
@@ -1655,7 +1655,7 @@
         "reminders": [],
         "setup": false,
         "ability": "Якщо ви \"одержимі\" тим, що ви - чужинець, вас може бути страчено.",
-        "image": "/build/img/icons/outsider/mutant.webp",
+        "image": "/img/icons/outsider/mutant.webp",
         "remindersGlobal": []
     },
     {
@@ -1672,7 +1672,7 @@
         ],
         "setup": false,
         "ability": "Раз за гру, вночі, оберіть гравця: він дізнається, хто ви.",
-        "image": "/build/img/icons/townsfolk/nightwatchman.webp",
+        "image": "/img/icons/townsfolk/nightwatchman.webp",
         "remindersGlobal": []
     },
     {
@@ -1689,7 +1689,7 @@
         ],
         "setup": false,
         "ability": "Ви починаєте гру знаючи трьох гравців, один і лише один з яких є злим.",
-        "image": "/build/img/icons/townsfolk/noble.webp",
+        "image": "/img/icons/townsfolk/noble.webp",
         "remindersGlobal": []
     },
     {
@@ -1707,7 +1707,7 @@
         ],
         "setup": false,
         "ability": "Щоночі* оберіть гравця; він помирає. Двох ваших сусідів-городян отруєно.",
-        "image": "/build/img/icons/demon/nodashii.webp",
+        "image": "/img/icons/demon/nodashii.webp",
         "remindersGlobal": []
     },
     {
@@ -1724,7 +1724,7 @@
         ],
         "setup": false,
         "ability": "Першої своєї ночі оберіть гравця (не себе): ви стаєте членом їхньої команди (але не дізнаєтесь, якої саме), навіть якщо ви п'яні чи отруєні.",
-        "image": "/build/img/icons/outsider/ogre.webp",
+        "image": "/img/icons/outsider/ogre.webp",
         "remindersGlobal": []
     },
     {
@@ -1741,7 +1741,7 @@
         ],
         "setup": false,
         "ability": "Щоночі* оберіть персонажа; він помирає. Якщо персонажа немає в грі, Оповідач обирає хто помре.",
-        "image": "/build/img/icons/demon/ojo.webp",
+        "image": "/img/icons/demon/ojo.webp",
         "remindersGlobal": []
     },
     {
@@ -1756,7 +1756,7 @@
         "reminders": [],
         "setup": false,
         "ability": "Щоночі* ви дізнаєтесь, скільки мертвих гравців – злі.",
-        "image": "/build/img/icons/townsfolk/oracle.webp",
+        "image": "/img/icons/townsfolk/oracle.webp",
         "remindersGlobal": []
     },
     {
@@ -1773,7 +1773,7 @@
         ],
         "setup": false,
         "ability": "Всі гравці заплющують очі під час голосувань і не знають кількість голосів. Голоси проти тебе рахуються лише якщо ти проголосував.",
-        "image": "/build/img/icons/minion/organgrinder.webp",
+        "image": "/img/icons/minion/organgrinder.webp",
         "remindersGlobal": []
     },
     {
@@ -1788,7 +1788,7 @@
         "reminders": [],
         "setup": false,
         "ability": "Страчені добрі гравці можуть не померти.",
-        "image": "/build/img/icons/townsfolk/pacifist.webp",
+        "image": "/img/icons/townsfolk/pacifist.webp",
         "remindersGlobal": []
     },
     {
@@ -1803,7 +1803,7 @@
         "reminders": [],
         "setup": false,
         "ability": "Раз за гру, вночі, оберіть доброго персонажа: ви отримуєте його здібність. Якщо обраний персонаж вже є в грі, він п'яніє до кінця гри.",
-        "image": "/build/img/icons/townsfolk/philosopher.webp",
+        "image": "/img/icons/townsfolk/philosopher.webp",
         "remindersGlobal": [
             "П'яний",
             "Насправді філософ"
@@ -1821,7 +1821,7 @@
         "reminders": [],
         "setup": false,
         "ability": "Щоночі* оберіть гравці та персонажа, яким він стає (якщо персонажа у грі немає). Якщо таким чином створено демона, смерті цієї ночі будуть випадковими.",
-        "image": "/build/img/icons/minion/pithag.webp",
+        "image": "/img/icons/minion/pithag.webp",
         "remindersGlobal": []
     },
     {
@@ -1839,7 +1839,7 @@
         ],
         "setup": false,
         "ability": "Ви починаєте гру знаючи одного городянина в грі. Якщо ви одержимі, що ви - цей персонаж, ви отримаєте його здібність, коли він помре.",
-        "image": "/build/img/icons/townsfolk/pixie.webp",
+        "image": "/img/icons/townsfolk/pixie.webp",
         "remindersGlobal": []
     },
     {
@@ -1856,7 +1856,7 @@
         ],
         "setup": false,
         "ability": "Якщо ви помираєте, Оповідач отримує здібність міньйона.",
-        "image": "/build/img/icons/outsider/plaguedoctor.webp",
+        "image": "/img/icons/outsider/plaguedoctor.webp",
         "remindersGlobal": []
     },
     {
@@ -1874,7 +1874,7 @@
         ],
         "setup": false,
         "ability": "Щоночі* ви можете обрати гравця: він помирає. Якщо минулої ночі нікого не було обрано - натомість оберіть трьох.",
-        "image": "/build/img/icons/demon/po.webp",
+        "image": "/img/icons/demon/po.webp",
         "remindersGlobal": []
     },
     {
@@ -1891,7 +1891,7 @@
         ],
         "setup": false,
         "ability": "Щоночі оберіть гравця; його отруєно на ніч і наступний день.",
-        "image": "/build/img/icons/minion/poisoner.webp",
+        "image": "/img/icons/minion/poisoner.webp",
         "remindersGlobal": []
     },
     {
@@ -1906,7 +1906,7 @@
         "reminders": [],
         "setup": false,
         "ability": "Якщо ви - головна причина вашої поразки, ви міняєте команду і перемагаєте, навіть якщо мертві.",
-        "image": "/build/img/icons/outsider/politician.webp",
+        "image": "/img/icons/outsider/politician.webp",
         "remindersGlobal": []
     },
     {
@@ -1923,7 +1923,7 @@
         ],
         "setup": false,
         "ability": "Міньони і демони не знають одне одного. Якщо ви помираєте, тієї ночі демон та міньони дізнаються, хто є хто.",
-        "image": "/build/img/icons/townsfolk/poppygrower.webp",
+        "image": "/img/icons/townsfolk/poppygrower.webp",
         "remindersGlobal": []
     },
     {
@@ -1940,7 +1940,7 @@
         ],
         "setup": false,
         "ability": "Щоночі оберіть гравця; обрані міньони дізнаються про це. Всі обрані міньйони не мають здібностей.",
-        "image": "/build/img/icons/townsfolk/preacher.webp",
+        "image": "/img/icons/townsfolk/preacher.webp",
         "remindersGlobal": []
     },
 	 {
@@ -1957,7 +1957,7 @@
         ],
         "setup": false,
         "ability": "Першого вашого дня, якщо ви номінували та стратили гравця, демон вночі не вбиває.",
-        "image": "/build/img/icons/townsfolk/princess.webp"
+        "image": "/img/icons/townsfolk/princess.webp"
     },
     {
         "id": "professor_uk",
@@ -1974,7 +1974,7 @@
         ],
         "setup": false,
         "ability": "Раз за гру, вночі*, оберіть мертвого гравця. Якщо це городянин, він оживає.",
-        "image": "/build/img/icons/townsfolk/professor.webp",
+        "image": "/img/icons/townsfolk/professor.webp",
         "remindersGlobal": []
     },
     {
@@ -1989,7 +1989,7 @@
         "reminders": [],
         "setup": false,
         "ability": "Щодня, до номінацій, ви можете публічно обрати гравця: він помирає. Якщо вас страчено, ви помираєте лише якщо програєте в камінь-ножиці-папір.",
-        "image": "/build/img/icons/minion/psychopath.webp",
+        "image": "/img/icons/minion/psychopath.webp",
         "remindersGlobal": []
     },
     {
@@ -2007,7 +2007,7 @@
         ],
         "setup": false,
         "ability": "Щоночі оберіть гравця: його отруєно. Попередньо отруєний гравець помирає, а потім стає здоровим.",
-        "image": "/build/img/icons/demon/pukka.webp",
+        "image": "/img/icons/demon/pukka.webp",
         "remindersGlobal": []
     },
     {
@@ -2025,7 +2025,7 @@
         ],
         "setup": false,
         "ability": "Один з гравців п'яний, навіть якщо ви мертві. Якщо ви з однієї спроби вгадаєте, хто це, то дізнаєтесь, хто є демоном; якщо не вгадаєте, інформація буде хибною.",
-        "image": "/build/img/icons/outsider/puzzlemaster.webp",
+        "image": "/img/icons/outsider/puzzlemaster.webp",
         "remindersGlobal": []
     },
     {
@@ -2040,7 +2040,7 @@
         "reminders": [],
         "setup": false,
         "ability": "Якщо ви помрете вночі, то зможете обрати гравця; ви дізнаєтесь його персонажа.",
-        "image": "/build/img/icons/townsfolk/ravenkeeper.webp",
+        "image": "/img/icons/townsfolk/ravenkeeper.webp",
         "remindersGlobal": []
     },
     {
@@ -2055,7 +2055,7 @@
         "reminders": [],
         "setup": false,
         "ability": "Ви можете здаватись злим міньйоном чи демоном, навіть після смерті.",
-        "image": "/build/img/icons/outsider/recluse.webp",
+        "image": "/img/icons/outsider/recluse.webp",
         "remindersGlobal": []
     },
     {
@@ -2069,7 +2069,7 @@
         "name": "Революціонер",
         "team": "fabled",
         "ability": "Два гравці-сусіди завідома в одній команді. Раз за гру один з них сприймається хибно.",
-        "image": "/build/img/icons/fabled/revolutionary.webp",
+        "image": "/img/icons/fabled/revolutionary.webp",
         "remindersGlobal": []
     },
     {
@@ -2084,7 +2084,7 @@
         "reminders": [],
         "setup": true,
         "ability": "На третій день всі міньйони стають Крамолою, а номіновані гравці помирають, але одразу номінують живого гравця. Це має статися.",
-        "image": "/build/img/icons/demon/riot.webp",
+        "image": "/img/icons/demon/riot.webp",
         "remindersGlobal": []
     },
     {
@@ -2099,7 +2099,7 @@
         "reminders": [],
         "setup": false,
         "ability": "Як вас вбиває демон - ви дізнаєтесь, що це один з двох гравців.",
-        "image": "/build/img/icons/townsfolk/sage.webp",
+        "image": "/img/icons/townsfolk/sage.webp",
         "remindersGlobal": []
     },
     {
@@ -2116,7 +2116,7 @@
         ],
         "setup": false,
         "ability": "Щоночі оберіть живого гравця; один з вас буде п'яним до сутінок. Ви не можете померти.",
-        "image": "/build/img/icons/townsfolk/sailor.webp",
+        "image": "/img/icons/townsfolk/sailor.webp",
         "remindersGlobal": []
     },
     {
@@ -2131,7 +2131,7 @@
         "reminders": [],
         "setup": false,
         "ability": "Якщо вас страчено, і ви помираєте, ваша команда програє.",
-        "image": "/build/img/icons/outsider/saint.webp",
+        "image": "/img/icons/outsider/saint.webp",
         "remindersGlobal": []
     },
     {
@@ -2146,7 +2146,7 @@
         "reminders": [],
         "setup": false,
        "ability": "Щодня ви можете усамітнитись з Оповідачем, і він скаже вам дві речі: одну правду й одну брехню.",
-        "image": "/build/img/icons/townsfolk/savant.webp",
+        "image": "/img/icons/townsfolk/savant.webp",
         "remindersGlobal": []
     },
     {
@@ -2161,7 +2161,7 @@
         "reminders": [],
         "setup": false,
         "ability": "Якщо гравець твоєї команди помирає, замість нього можеш померти ти.",
-        "image": "/build/img/icons/traveller/scapegoat.webp",
+        "image": "/img/icons/traveller/scapegoat.webp",
         "remindersGlobal": []
     },
     {
@@ -2175,7 +2175,7 @@
         "reminders": ["Демон"],
         "setup": false,
         "ability": "Якщо у грі є 5 або більше живих гравців, і демон помирає, то ви стаєте демоном (подорожні не рахуються).",
-        "image": "/build/img/icons/minion/scarletwoman.webp",
+        "image": "/img/icons/minion/scarletwoman.webp",
         "remindersGlobal": []
     },
     {
@@ -2192,7 +2192,7 @@
         ],
         "setup": false,
         "ability": "Раз за гру, вночі, оберіть двох гравців (не себе); дізнайтесь, чи в одній команді ці гравці.",
-        "image": "/build/img/icons/townsfolk/seamstress.webp",
+        "image": "/img/icons/townsfolk/seamstress.webp",
         "remindersGlobal": []
     },
     {
@@ -2204,7 +2204,7 @@
         "name": "Вартовий",
         "team": "fabled",
         "ability": "Чужинців у грі може бути на 1 більше або менше",
-        "image": "/build/img/icons/fabled/sentinel.webp",
+        "image": "/img/icons/fabled/sentinel.webp",
         "remindersGlobal": []
     },
     {
@@ -2222,7 +2222,7 @@
         ],
         "setup": false,
         "ability": "Щоночі* оберіть двох гравців: вони помирають. Мертвого гравця, якого ви вбили попередньої ночі, може бути вивержено.",
-        "image": "/build/img/icons/demon/shabaloth.webp",
+        "image": "/img/icons/demon/shabaloth.webp",
         "remindersGlobal": []
     },
     {
@@ -2237,7 +2237,7 @@
         "reminders": [],
         "setup": false,
         "ability": "Ви починаєте гру знаючи, чи знаходиться найближчий до вас злий гравець за годинниковою стрілкою від вас чи проти. Якщо відстань рівна, інформація випадкова.",
-        "image": "/build/img/icons/townsfolk/shugenja.webp",
+        "image": "/img/icons/townsfolk/shugenja.webp",
         "remindersGlobal": []
     },
     {
@@ -2254,7 +2254,7 @@
         ],
         "setup": false,
         "ability": "Одного разу за гру, протягом дня, публічно оберіть гравця. Якщо обрано демона, він помирає.",
-        "image": "/build/img/icons/townsfolk/slayer.webp",
+        "image": "/img/icons/townsfolk/slayer.webp",
         "remindersGlobal": []
     },
     {
@@ -2271,7 +2271,7 @@
         ],
         "setup": false,
         "ability": "Щоночі оберіть живого гравця; якщо ви оберете демона, ви міняєтесь персонажами й командами, і його отруєно.",
-        "image": "/build/img/icons/townsfolk/snakecharmer.webp",
+        "image": "/img/icons/townsfolk/snakecharmer.webp",
         "remindersGlobal": []
     },
     {
@@ -2286,7 +2286,7 @@
         "reminders": [],
         "setup": false,
         "ability": "Міньони одразу знають трьох персонажів не в грі.",
-        "image": "/build/img/icons/outsider/snitch.webp",
+        "image": "/img/icons/outsider/snitch.webp",
         "remindersGlobal": []
     },
     {
@@ -2301,7 +2301,7 @@
         "reminders": [],
         "setup": false,
         "ability": "Ви в безпеці від демона.",
-        "image": "/build/img/icons/townsfolk/soldier.webp",
+        "image": "/img/icons/townsfolk/soldier.webp",
         "remindersGlobal": []
     },
     {
@@ -2315,7 +2315,7 @@
         "name": "Дух Слонової Кістки",
         "team": "fabled",
         "ability": "Злих гравців не може бути більше, ніж стандартна кількість + 1",
-        "image": "/build/img/icons/fabled/spiritofivory.webp",
+        "image": "/img/icons/fabled/spiritofivory.webp",
         "remindersGlobal": []
     },
     {
@@ -2330,7 +2330,7 @@
         "reminders": [],
         "setup": false,
         "ability": "Щоночі ви бачите Гримуар. Ви можете здаватись добрим городянином чи чужинцем, навіть після смерті.",
-        "image": "/build/img/icons/minion/spy.webp",
+        "image": "/img/icons/minion/spy.webp",
         "remindersGlobal": []
     },
     {
@@ -2347,7 +2347,7 @@
         ],
         "setup": false,
         "ability": "Ви починаєте гру знаючи одного доброго гравця.",
-        "image": "/build/img/icons/townsfolk/steward.webp",
+        "image": "/img/icons/townsfolk/steward.webp",
         "remindersGlobal": []
     },
     {
@@ -2362,7 +2362,7 @@
         "name": "Ловигрім",
         "team": "fabled",
         "ability": "Назвіть доброго персонажа: цей персонаж, якщо в грі, може померти лиш від страти. Злі гравці знають цього гравця.",
-        "image": "/build/img/icons/fabled/stormcatcher.webp",
+        "image": "/img/icons/fabled/stormcatcher.webp",
         "remindersGlobal": []
     },
     {
@@ -2381,7 +2381,7 @@
         ],
         "setup": true,
         "ability": "Ви отримуєте блефи. На третю ніч оберіть гравця: той стає обраним вами злим демоном. [Немає демона]",
-        "image": "/build/img/icons/minion/summoner.webp",
+        "image": "/img/icons/minion/summoner.webp",
         "remindersGlobal": []
     },
     {
@@ -2398,7 +2398,7 @@
         ],
         "setup": false,
         "ability": "Якщо ви помираєте, один з гравців п'яніє до кінця гри.",
-        "image": "/build/img/icons/outsider/sweetheart.webp",
+        "image": "/img/icons/outsider/sweetheart.webp",
         "remindersGlobal": []
     },
     {
@@ -2415,7 +2415,7 @@
         ],
         "setup": false,
         "ability": "Якщо обидва ваші живі сусіди добрі, жоден з них не може померти.",
-        "image": "/build/img/icons/townsfolk/tealady.webp",
+        "image": "/img/icons/townsfolk/tealady.webp",
         "remindersGlobal": []
     },
     {
@@ -2432,7 +2432,7 @@
         ],
         "setup": false,
         "ability": "Щоночі оберіть гравця (не себе): завтра їх голос рахується за -1.",
-        "image": "/build/img/icons/traveller/thief.webp",
+        "image": "/img/icons/traveller/thief.webp",
         "remindersGlobal": []
     },
     {
@@ -2449,7 +2449,7 @@
         ],
         "setup": false,
         "ability": "Ви можете померти будь-коли.",
-        "image": "/build/img/icons/outsider/tinker.webp",
+        "image": "/img/icons/outsider/tinker.webp",
         "remindersGlobal": []
     },
     {
@@ -2465,7 +2465,7 @@
         "Міньйон номінував"],
         "setup": false,
         "ability": "Щоночі* ви дізнаєтесь, чи висував міньйон сьогодні когось на голосування.",
-        "image": "/build/img/icons/townsfolk/towncrier.webp",
+        "image": "/img/icons/townsfolk/towncrier.webp",
         "remindersGlobal": []
     },
     {
@@ -2480,7 +2480,7 @@
         "name": "Лялькар",
         "team": "fabled",
         "ability": "Демон може вирішити (і має хоч раз за гру) пропустити атаку вночі. Злі гравці отримують свої початкові дані",
-        "image": "/build/img/icons/fabled/toymaker.webp",
+        "image": "/img/icons/fabled/toymaker.webp",
         "remindersGlobal": []
     },
     {
@@ -2497,7 +2497,7 @@
         ],
         "setup": false,
         "ability": "Щоночі* ви дізнаєтесь, якого персонажа було страчено вчора.",
-        "image": "/build/img/icons/townsfolk/undertaker.webp",
+        "image": "/img/icons/townsfolk/undertaker.webp",
         "remindersGlobal": []
     },
     {
@@ -2514,7 +2514,7 @@
         "Отруєно"],
         "setup": true,
         "ability": "Щоночі* оберіть гравця; він помирає. Вбиті вами міньйони не втрачають своїх здібностей, і отруюють одного сусіда-городянина [-1 чужинець].",
-        "image": "/build/img/icons/demon/vigormortis.webp",
+        "image": "/img/icons/demon/vigormortis.webp",
         "remindersGlobal": []
     },
     {
@@ -2531,7 +2531,7 @@
         ],
         "setup": true,
         "ability": "Щоночі оберіть гравця: ви дізнаєтесь його команду. [від +0 до +2 сільських дурників. 1 з додаткових - п'яний]",
-        "image": "/build/img/icons/townsfolk/villageidiot.webp",
+        "image": "/img/icons/townsfolk/villageidiot.webp",
         "remindersGlobal": []
     },
     {
@@ -2548,7 +2548,7 @@
         ],
         "setup": false,
         "ability": "Першого разу, коли вас проголошують кандидатом на страту, якщо персонаж, який вас висунув, є городянином, його буде негайно страчено.",
-        "image": "/build/img/icons/townsfolk/virgin.webp",
+        "image": "/img/icons/townsfolk/virgin.webp",
         "remindersGlobal": []
     },
     {
@@ -2563,7 +2563,7 @@
         "reminders": [],
         "setup": false,
         "ability": "Всі гравці знають, хто ви. Ви не можете померти вдень. Якщо хоч один з хороших гравців проголосував, ви можете одразу стратити номінованого.",
-        "image": "/build/img/icons/minion/vizier.webp",
+        "image": "/img/icons/minion/vizier.webp",
         "remindersGlobal": []
     },
     {
@@ -2580,7 +2580,7 @@
         ],
         "setup": false,
         "ability": "Щоночі* оберіть гравця; він помирає. Здібності городян завжди дають хибні дані. Якщо вдень нікого не страчено - зло перемагає.",
-        "image": "/build/img/icons/demon/vortox.webp",
+        "image": "/img/icons/demon/vortox.webp",
         "remindersGlobal": []
     },
     {
@@ -2595,7 +2595,7 @@
         "reminders": [],
         "setup": false,
         "ability": "Лише ви і мертві гравці можуть голосувати (їм не потрібні жетони для голосування). Для страти не потрібна більшість голосів.",
-        "image": "/build/img/icons/traveller/voudon.webp",
+        "image": "/img/icons/traveller/voudon.webp",
         "remindersGlobal": []
     },
     {
@@ -2613,7 +2613,7 @@
         ],
         "setup": false,
         "ability": "Ви починаєте гру знаючи, що один з двох гравців є певним городянином.",
-        "image": "/build/img/icons/townsfolk/washerwoman.webp",
+        "image": "/img/icons/townsfolk/washerwoman.webp",
         "remindersGlobal": []
     },
     {
@@ -2633,7 +2633,7 @@
         ],
         "setup": false,
         "ability": "Першої ночі подивіться в Ґримуар та оберіть гравця: його отруєно. 1 хороший гравець знає, що Чорна Вдова у грі.",
-        "image": "/build/img/icons/minion/widow.webp"
+        "image": "/img/icons/minion/widow.webp"
     },
     {
         "id": "witch_uk",
@@ -2649,7 +2649,7 @@
         ],
         "setup": false,
         "ability": "Щоночі оберіть гравця; якщо він завтра когось номінує, то негайно помре. Якщо живими лишилось лише 3 гравця, ви втрачаєте цю здібність.",
-        "image": "/build/img/icons/minion/witch.webp",
+        "image": "/img/icons/minion/witch.webp",
         "remindersGlobal": []
     },
 	{
@@ -2666,7 +2666,7 @@
         ],
         "setup": false,
         "ability": "Один раз за гру, ви можете загадати бажання. Якщо воно здійсниться, у нього може бути ціна та ознаки його природи.",
-        "image": "/build/img/icons/minion/wizard.webp"
+        "image": "/img/icons/minion/wizard.webp"
     },
     {
         "id": "yaggababble_uk",
@@ -2682,7 +2682,7 @@
         ],
         "setup": false,
         "ability": "Ви починаєте гру знаючи таємну фразу. За кожен раз, що ви її сказали публічно, може померти гравець",
-        "image": "/build/img/icons/demon/yaggababble.webp",
+        "image": "/img/icons/demon/yaggababble.webp",
         "remindersGlobal": []
     },
     {
@@ -2697,7 +2697,7 @@
         "reminders": [],
         "setup": false,
         "ability": "Якщо в живих є 5 або більше гравців, ви повинні проголосувати за кожну номінацію.",
-        "image": "/build/img/icons/outsider/zealot.webp",
+        "image": "/img/icons/outsider/zealot.webp",
         "remindersGlobal": []
     },
     {
@@ -2715,10 +2715,11 @@
         ],
         "setup": false,
         "ability": "Щоночі*, якщо сьогодні ніхто не помер, ви обираєте гравця; той помирає. Першого разу, коли ви помираєте - ви не помираєте, але надалі здаєтесь мертвим.",
-        "image": "/build/img/icons/demon/zombuul.webp",
+        "image": "/img/icons/demon/zombuul.webp",
         "remindersGlobal": []
     }
 ]
+
 
 
 
