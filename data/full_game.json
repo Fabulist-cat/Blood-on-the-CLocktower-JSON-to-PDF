@@ -1,7 +1,7 @@
 [
     {
 	"id": "_meta",
-	"version": 149.02
+	"version": 150.02
     },
     {
         "id": "acrobat_uk",
@@ -2667,6 +2667,20 @@
         "setup": false,
         "ability": "Один раз за гру, ви можете загадати бажання. Якщо воно здійсниться, у нього може бути ціна та ознаки його природи.",
         "image": "/img/icons/minion/wizard.webp"
+    },
+	{
+        "id": "wraith_uk",
+        "name": "Примара",
+		"team": "minion",
+		"firstnight": 2,
+		"othernight": 2,
+        "ability": "Вночі ви можете прокидатись коли завгодно. Коли злі гравці прокидаються, ви прокидаєтесь разом з ними.",
+        "firstNightReminder": "Щоразу як прокидаються злі гравці, розбудіть Примару.",
+        "otherNightReminder": "Щоразу як прокидаються злі гравці, розбудіть Примару.",
+        "remindersGlobal": [],
+		"setup": false,
+		"image": "/img/icons/minion/wraith.webp",
+        "reminders": []
     },
     {
         "id": "yaggababble_uk",
