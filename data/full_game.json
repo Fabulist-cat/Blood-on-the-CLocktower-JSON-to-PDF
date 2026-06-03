@@ -1,7 +1,7 @@
 [
     {
 	"id": "_meta",
-	"version": 150.02
+	"version": 150.03
     },
     {
         "id": "acrobat_uk",
@@ -1764,15 +1764,16 @@
         "name": "Катеринщик",
         "edition": "",
         "team": "minion",
-        "firstNight": 0,
-        "firstNightReminder": "",
-        "otherNight": 0,
-        "otherNightReminder": "",
+        "firstNight": 50,
+        "firstNightReminder": "Катеринщик вирішує, чи він п'яний",
+        "otherNight": 50,
+        "otherNightReminder": "Катеринщик вирішує, чи він п'яний",
         "reminders": [
+            "П'яний",
             "Буде страчено"
         ],
         "setup": false,
-        "ability": "Всі гравці заплющують очі під час голосувань і не знають кількість голосів. Голоси проти тебе рахуються лише якщо ти проголосував.",
+        "ability": "Всі гравці заплющують очі під час голосувань і не знають кількість голосів. Щоночі ви вирішуєте, чи ви п'яні.",
         "image": "/img/icons/minion/organgrinder.webp",
         "remindersGlobal": []
     },
