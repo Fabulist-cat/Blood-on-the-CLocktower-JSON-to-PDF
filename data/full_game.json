@@ -1765,9 +1765,9 @@
         "edition": "",
         "team": "minion",
         "firstNight": 50,
-        "firstNightReminder": "Катеринщик вирішує, чи він п'яний",
+        "firstNightReminder": "Катеринщик вирішує, чи він п'яний.",
         "otherNight": 50,
-        "otherNightReminder": "Катеринщик вирішує, чи він п'яний",
+        "otherNightReminder": "Катеринщик вирішує, чи він п'яний.",
         "reminders": [
             "П'яний",
             "Буде страчено"
