@@ -1,7 +1,7 @@
 [
     {
 	"id": "_meta",
-	"version": 3.04
+	"version": 4.04
     },
     {
         "id": "chambermaid",
@@ -850,7 +850,7 @@
         "jinx": [
             {
                 "id": "bountyhunter",
-                "reason": "If the Philosopher gains the Bounty Hunter ability, a Townsfolk might turn evil."
+                "reason": "Якщо Філософ отримує здібність Мисливця за головами, городянин може стати злим."
             }
         ]
     },
