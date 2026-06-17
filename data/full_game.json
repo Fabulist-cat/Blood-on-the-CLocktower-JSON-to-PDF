@@ -272,6 +272,18 @@
         "image": "/img/icons/traveller/beggar.webp",
         "remindersGlobal": []
     },
+	{
+        "id": "bigwig",
+        "name": "Пан Перука",
+        "edition": "",
+        "team": "fabled",
+        "firstNightReminder": "",
+        "otherNightReminder": "",
+        "reminders": [],
+        "setup": false,
+        "ability": "Кожен номінований обирає гравця: до номінацій, лише цей гравець може говорити, і він одержимий, що номінований – добрий, або може померти.",
+        "image": "/img/icons/fabled/bigwig.webp"
+    },
     {
         "id": "bishop_uk",
         "name": "Єпископ",
@@ -1139,6 +1151,24 @@
         "ability": "Ті, хто перемагає - програють, а ті, хто програли - перемагають, навіть якщо ви мертві.",
         "image": "/img/icons/outsider/heretic.webp",
         "remindersGlobal": []
+    },
+	 {
+        "id": "hermit_uk",
+        "name": "Відлюдник",
+        "edition": "",
+        "team": "outsider",
+        "firstNight": 0,
+        "firstNightReminder": "",
+        "otherNight": 0,
+        "otherNightReminder": "",
+        "reminders": [
+            "1",
+            "2",
+            "3"
+        ],
+        "setup": true,
+        "ability": "У вас є здібності всіх чужинців. [-0 або -1 чужинець]",
+        "image": "/img/icons/outsider/hermit.webp"
     },
     {
         "id": "highpriestess_uk",
