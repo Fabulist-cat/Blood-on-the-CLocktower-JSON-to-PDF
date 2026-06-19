@@ -1,7 +1,7 @@
 [
     {
 	"id": "_meta",
-	"version": 153.04
+	"version": 153.05
     },
     {
         "id": "acrobat_uk",
@@ -2714,7 +2714,7 @@
         "reminders": []
     },
 	 {
-        "id": "xaan",
+        "id": "xaan_uk",
         "name": "Хаан",
         "edition": "",
         "team": "minion",
