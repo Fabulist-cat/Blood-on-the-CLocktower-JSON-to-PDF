@@ -1,7 +1,7 @@
 [
     {
 	"id": "_meta",
-	"version": 152.04
+	"version": 153.04
     },
     {
         "id": "acrobat_uk",
@@ -2712,6 +2712,25 @@
 		"setup": false,
 		"image": "/img/icons/minion/wraith.webp",
         "reminders": []
+    },
+	 {
+        "id": "xaan",
+        "name": "Хаан",
+        "edition": "",
+        "team": "minion",
+        "firstNight": 22,
+        "firstNightReminder": "Якщо жетон Х розміщено в Ґримуарі, всіх городян отруєно.",
+        "otherNight": 5,
+        "otherNightReminder": "Якщо жетон Х розміщено в Ґримуарі, всіх городян отруєно.",
+        "reminders": [
+            "Night 1",
+            "Night 2",
+            "Night 3",
+            "X"
+        ],
+        "setup": true,
+        "ability": "В ніч Х всіх городян отруєно до наступного вечора. [Х чужинців]",
+        "image": "/img/icons/minion/xaan.webp"
     },
     {
         "id": "yaggababble_uk",
