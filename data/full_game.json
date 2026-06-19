@@ -1,7 +1,7 @@
 [
     {
 	"id": "_meta",
-	"version": 153.05
+	"version": 154.05
     },
     {
         "id": "acrobat_uk",
@@ -301,6 +301,20 @@
         "ability": "Лише Оповідач може номінувати. Щодня має бути номінований хоча б один гравець з кожної команди.",
         "image": "/img/icons/traveller/bishop.webp",
         "remindersGlobal": []
+    },
+	{
+        "id": "boffin_uk",
+        "name": "Хімік",
+        "edition": "",
+        "team": "minion",
+        "firstNight": 1,
+        "firstNightReminder": "Розбудіть Хіміка і покажіть йому жетон здібності, яку має демон. Дайте йому знак засинати. Розбудіть демона, покажіть йому жетон Хіміка, потім покажіть йому жетон доброго персонажа, здібність якого він має.",
+        "otherNight": 0,
+        "otherNightReminder": "",
+        "reminders": [],
+        "setup": false,
+        "ability": "Демон (навіть якщо п'яний або отруєний) має здібність доброго персонажа не в грі. Ви обидва знаєте, яку саме.",
+        "image": "/build/img/roles/boffin_e.webp"
     },
     {
         "id": "bonecollector_uk",
@@ -2723,9 +2737,9 @@
         "otherNight": 5,
         "otherNightReminder": "Якщо жетон Х розміщено в Ґримуарі, всіх городян отруєно.",
         "reminders": [
-            "Night 1",
-            "Night 2",
-            "Night 3",
+            "Ніч 1",
+            "Ніч 2",
+            "Ніч 3",
             "X"
         ],
         "setup": true,
