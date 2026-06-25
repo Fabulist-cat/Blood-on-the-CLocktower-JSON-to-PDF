@@ -1,4 +1,4 @@
-namespace BotC_PDFer_3;
+/*namespace BotC_PDFer_3;
 
 using Microsoft.AspNetCore.SignalR;
 using System;
@@ -48,4 +48,4 @@ public class AppHub : Hub
             Process.Start("xdg-open", path);
         }
     }
-}
+}*/

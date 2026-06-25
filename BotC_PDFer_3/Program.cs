@@ -1,24 +1,13 @@
 using System.Net;
 using System.Text.Json;
+using Microsoft.VisualBasic.CompilerServices;
 using QuestPDF.Fluent;
 using QuestPDF.Infrastructure;
 using QuestPDF.Helpers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using static System.Net.Mime.MediaTypeNames;
-using System.Data.Common;
 using QuestPDF.Drawing;
-using System.Net;
-using System.Globalization;
 using JsonSerializer = System.Text.Json.JsonSerializer;
-using Microsoft.AspNetCore.SignalR;
-using System;
-using System.Collections;
-using System.Diagnostics;
-using System.IO;
-using System.Runtime.InteropServices;
-using System.Threading.Tasks;
-using BotC_PDFer_3;
 using SkiaSharp;
 
 /*
@@ -196,8 +185,59 @@ namespace BotC_PDFer_3
                     page.Header().Column(column =>
                     {
                         column.Item().Text($"     {scriptName}").FontSize(18).SemiBold().FontFamily("Arlekino");
+                        column.Item().Row(headersRow => 
+                        {
+                            headersRow.RelativeItem().Column(headCol =>
+                            {
+                                headCol.Item().Text($"             by {author}").FontFamily("Georgia");
+                            });
+                            headersRow.RelativeItem().Column(florcol =>
+                            {
+                                var bootlegger = characters.ToList().Find(character => character.Id == "bootlegger_uk") ?? null;
+                                florcol.Item().AlignRight().Row(imgRow =>
+                                {
+                                    if (bootlegger != null)
+                                    {
+                                        Console.WriteLine("Bootlegger present!");
+                                        if (_meta["bootlegger"] is object[] array && array.Length > 0)
+                                        {
+                                            foreach (var data in array)
+                                            {
+                                                Console.WriteLine($"Bootlegger: {data}");
+                                                imgRow.RelativeItem().AlignRight().ScaleToFit().Text($"Контрабандист: {data}")
+                                                    .FontFamily("Candara").FontSize(6);
+                                            }
+                                        }
+                                        else
+                                        {
+                                            Console.WriteLine($"Bootlegger: classic");
+                                            imgRow.RelativeItem().AlignRight().ScaleToFit().Text("Контрабандист: у цьому сценарії є саморобні правила або персонажі")
+                                                .FontFamily("Candara").FontSize(6);
+                                        }
+                                        
+                                        imgRow.ConstantItem(15).Height(15).AlignRight().PaddingRight(-4).Image(bootlegger.Image);
+                                    }
+
+                                    foreach (var character in characters)
+                                    {
+                                        if (character.Team is "fabled" or "loric")
+                                        {
+                                            if (character.Id != "bootlegger_uk")
+                                            {
+                                                imgRow.ConstantItem(15).Height(15).AlignRight().PaddingRight(-4)
+                                                    .Image(character.Image);
+                                            }
+                                        }
+                                    }
+                                });
+
+                            });
+                        
+                        });
+
+                        /*column.Item().Text($"     {scriptName}").FontSize(18).SemiBold().FontFamily("Arlekino");
                         column.Item().Text($"             by {author}").FontFamily("Georgia");
-                        column.Item().PaddingVertical(5).LineHorizontal(1).LineColor(Colors.Grey.Medium);
+                        //column.Item().PaddingVertical(5).LineHorizontal(1).LineColor(Colors.Grey.Medium);*/
                     });
                     page.Content().Layers(layers =>
                     {
@@ -217,6 +257,22 @@ namespace BotC_PDFer_3
                             TeamDrawing("demon", contentColumn, characters);
 
                         });
+                        /*layers.Layer().Row(florow =>
+                        {
+                            var bootlegger = characters.ToList().Find(character => character.Id == "bootlegger") ?? null;
+                            if (bootlegger != null)
+                            {
+                                florow.ConstantItem(10).AlignRight().PaddingRight(-4).PaddingTop(20).Image(bootlegger.Image);
+                            }
+
+                            foreach (var character in characters)
+                            {
+                                if (character.Team is "fabled" or "loric")
+                                {
+                                    florow.ConstantItem(10).AlignRight().PaddingRight(-4).PaddingTop(20).Image(character.Image);
+                                }
+                            }
+                        });*/
                     });
                     page.Footer().Column(column =>
                     {
@@ -227,7 +283,8 @@ namespace BotC_PDFer_3
                 {
                     page2.DefaultTextStyle(x => x.FontFamily("TNR"));
                     page2.Size(PageSizes.A4);
-                    page2.Margin(0);
+                    page2.MarginLeft(10);
+                    page2.MarginRight(10);
                     page2.Header().Column(column =>
                     {
                         column.Item().Text($" {scriptName}").FontSize(18).SemiBold().FontFamily("Arlekino").AlignCenter();
@@ -239,18 +296,18 @@ namespace BotC_PDFer_3
                         var demonImage = Path.Combine(Directory.GetCurrentDirectory(), "data", "_demon.png");
                         var minionImage = Path.Combine(Directory.GetCurrentDirectory(), "data", "_minion.png");
                         var imagePath = Path.Combine(Directory.GetCurrentDirectory(), "data", "_page2.png");
-                        var jinxPath = Path.Combine(Directory.GetCurrentDirectory(), "data", "jinx.json");
-
+                        
                         page2.Background().Image(imagePath);
                         layers.PrimaryLayer().Row(row =>
                         {
+                            string nightOrder = File.ReadAllText(NightOrderLocalPath);
+                            var order = JsonConvert.DeserializeObject<Dictionary<string, List<string>>>(nightOrder);
                             row.ConstantItem(100).Column(contentColumn =>
                             {
-                                string nightOrder = File.ReadAllText(NightOrderLocalPath);
-                                var order = JsonConvert.DeserializeObject<Dictionary<string, List<string>>>(nightOrder);
+                                
                                 
                                 List<string> forder = new List<string>();
-                                List<string> oorder = new List<string>();
+                                
 
                                 if (_meta["firstNight"] is object[] array && array.Length > 0)
                                 {
@@ -295,45 +352,11 @@ namespace BotC_PDFer_3
                                     
                                 }
                                 
-                                                                /*
-                                if (_meta["otherNight"] is object[] orray && orray.Length > 0)
-                                {
-                                    foreach (var dat in orray)
-                                    {
-                                        oorder.Add(dat.ToString());
-                                    }
-                                }
-                                else
-                                {
-                                    oorder = order["firstNight"];
-                                }
-
-                                foreach (string odat in oorder)
-                                   {
-                                       switch (odat)
-                                       {
-                                           case "dusk":
-                                               NightOrderDrawing("Вечір", duskImage, null, contentColumn);
-                                               break;
-                                           case "dawn":
-                                               NightOrderDrawing("Ранок", dawnImage, null, contentColumn);
-                                               break;
-                                           default:
-                                               foreach (var character in characters)
-                                               {
-                                                   if (character.Id == dat + "_uk")
-                                                   {
-                                                       NightOrderDrawing(character.Name, null, character, contentColumn);
-                                                   }
-                                               }
-                                               break;
-                                       }*/
-
                             });
-                            //row.RelativeItem();
-                            row.ConstantItem(220).Column(contentColumn =>
+                            row.RelativeItem();
+                            row.ConstantItem(230).Column(contentColumn =>
                             {
-                                contentColumn.Item().Height(75);
+                                contentColumn.Item().Height(95);
                                 contentColumn.Item().Height(500).Column(jinxColumn =>
                                 {
                                     if (jinxPairs.Count == 0)
@@ -356,18 +379,83 @@ namespace BotC_PDFer_3
                                         }
                                     }
 
+                                    contentColumn.Item().Row(row =>
+                                    {
+                                        row.RelativeItem().Column(tColumn =>
+                                        {
+                                            if (DoesTeamExist(characters, "traveller"))
+                                            {
+                                                TeamDrawing("traveller", tColumn, characters, true);
+                                            }
+                                            else
+                                            {
+                                                tColumn.Item().Text("Немає жодних").FontSize(6)
+                                                    .FontFamily("Candara").FontColor(Colors.Grey.Lighten1);
+                                            }
+                                        });
+                                        row.RelativeItem().Column(tColumn =>
+                                        {
+                                            if (DoesTeamExist(characters, "fabled"))
+                                            {
+                                                TeamDrawing("fabled", tColumn, characters, true);
+                                                TeamDrawing("loric", tColumn, characters, true);
+                                            }
+                                            else
+                                            {
+                                                tColumn.Item().Text("Немає жодних").FontSize(6)
+                                                    .FontFamily("Candara").FontColor(Colors.Grey.Lighten1);
+                                            }
+                                        });
+                                    });
 
                                 });
+                                
+                                row.RelativeItem();
+                                row.ConstantItem(100).FlipOver().Column(contentColumn =>
+                                {
+                                    contentColumn.Item().Height(30);
+                                    List<string> oorder = new List<string>(); 
+                                    if (_meta["otherNight"] is object[] orray && orray.Length > 0)
+                                    {
+                                       foreach (var dat in orray)
+                                       {
+                                           oorder.Add(dat.ToString());
+                                       }
+                                    }
+                                    else
+                                    {
+                                       oorder = order["firstNight"];
+                                    }
 
+                                    foreach (string odat in oorder)
+                                    {
+                                       switch (odat)
+                                       {
+                                           case "dusk":
+                                               NightOrderDrawing("Вечір", duskImage, null, contentColumn);
+                                               break;
+                                           case "dawn":
+                                               NightOrderDrawing("Ранок", dawnImage, null, contentColumn);
+                                               break;
+                                           default:
+                                               foreach (var character in characters)
+                                               {
+                                                   if (character.Id == odat + "_uk")
+                                                   {
+                                                       NightOrderDrawing(character.Name, null, character, contentColumn);
+                                                   }
+                                               }
+                                               break;
+                                       }
+                                    }
+                                });
                             });
-
                         });
                     });
                 });
             });
            
-        document.GeneratePdfAndShow();
-        Console.ReadLine();
+        document.GeneratePdf($"{_workFolder}/{scriptName}.pdf");
 
         }
 
@@ -377,25 +465,51 @@ namespace BotC_PDFer_3
             {
                 if (character.Team == team)
                 {
-                    contentColumn.Item().Row(row =>
+                    contentColumn.Item().Layers(layers =>
                     {
-
-                        Console.WriteLine($"{character.Name}: {character.Image}");
-                        row.ConstantItem(14, Unit.Millimetre).PaddingRight(8).AlignCenter().AlignMiddle().PaddingTop(-4).Image(character.Image).FitArea();
-                        if (noAbility)
-                        {
-                            row.RelativeItem().PaddingRight(8).Text(character.Name).SemiBold().FontSize(10);
-                        }
-                        else
-                        {
-                            row.ConstantItem(86).PaddingRight(8).Text(character.Name).SemiBold().FontSize(10);
-                        }
-                        //row.RelativeItem()                              {
-                        if (!noAbility)
-                        {
-                            row.RelativeItem().Text(character.Ability).FontSize(9).FontFamily("Candara");
-                        }
-                        //contentColumn.Item().PaddingVertical(10);
+                        layers.PrimaryLayer().Row(row =>{
+                            {
+                                Console.WriteLine($"{character.Name}: {character.Image}");
+                                row.ConstantItem(14, Unit.Millimetre).PaddingRight(8).AlignCenter().AlignMiddle().PaddingTop(-4).Image(character.Image).FitArea();
+                                if (!noAbility)
+                                {
+                                    layers.Layer().Row(row =>
+                                    {
+                                        row.ConstantItem(25);
+                                        row.ConstantItem(5,Unit.Millimetre).Column(jinxColumn =>
+                                        {
+                                            foreach (var pair in jinxPairs)
+                                            {
+                                                if (character.Id == pair["character1"]+"_uk")
+                                                {
+                                                    Console.WriteLine($"Jinx: {pair["character1"]}, {pair["character2"]}");
+                                            
+                                                    var image2 = Path.Combine(Directory.GetCurrentDirectory(), "images", $"{pair["character2"]}.webp");
+                                                    jinxColumn.Item().AlignLeft().AlignBottom()
+                                                        .Height(3f, Unit.Millimetre).Image(image2).FitArea();
+                                                };
+                                            }
+                                        });
+                                        
+                                    });
+                                
+                                }
+                                if (noAbility)
+                                {
+                                    row.RelativeItem().PaddingRight(8).Text(character.Name).SemiBold().FontSize(10);
+                                }
+                                else
+                                {
+                                    row.ConstantItem(86).PaddingRight(8).Text(character.Name).SemiBold().FontSize(10);
+                                }
+                                //row.RelativeItem()                              {
+                                if (!noAbility)
+                                {
+                                    row.RelativeItem().Text(character.Ability).FontSize(9).FontFamily("Candara");
+                                }
+                                //contentColumn.Item().PaddingVertical(10);
+                            };
+                        });
                     });
                 }
             }
@@ -722,7 +836,7 @@ namespace BotC_PDFer_3
                 {
                     row.ConstantItem(10, Unit.Millimetre).AlignCenter().PaddingTop(-4);
                 }
-                row.ConstantItem(64, Unit.Point).PaddingRight(8).Text(text).SemiBold().FontSize(9).AlignLeft();
+                row.ConstantItem(64).PaddingRight(8).Text(text).SemiBold().FontSize(9).AlignLeft();
                 //contentColumn.Item().PaddingVertical(10);
             });
         }
@@ -782,6 +896,20 @@ namespace BotC_PDFer_3
             }
 
             return jinxPairs;
+        }
+
+        private static bool DoesTeamExist(Character[] characters, string id)
+        {
+            bool exists = false;
+            foreach (var character in characters)
+            {
+                if (character.Team == id)
+                {
+                    exists = true;
+                    break;
+                }
+            }
+            return exists;
         }
         
     }

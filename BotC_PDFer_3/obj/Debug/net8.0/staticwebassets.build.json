@@ -1,11 +1,77 @@
 {
   "Version": 1,
-  "Hash": "8rXyuPuxL33u5SWU28mXrLZO2Cwqn2rWlKFol5otzN4=",
+  "Hash": "n4vzSzFjsF7dVbQN5YNRNqT5zHoA51zoi0y1i8KX9r0=",
   "Source": "BotC_PDFer_3",
   "BasePath": "_content/BotC_PDFer_3",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "BotC_PDFer_3/wwwroot",
+      "Source": "BotC_PDFer_3",
+      "ContentRoot": "/home/fabulist/RiderProjects/Blood-on-the-CLocktower-JSON-to-PDF/BotC_PDFer_3/wwwroot/",
+      "BasePath": "_content/BotC_PDFer_3",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "/home/fabulist/RiderProjects/Blood-on-the-CLocktower-JSON-to-PDF/BotC_PDFer_3/wwwroot/app.js",
+      "SourceId": "BotC_PDFer_3",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/fabulist/RiderProjects/Blood-on-the-CLocktower-JSON-to-PDF/BotC_PDFer_3/wwwroot/",
+      "BasePath": "_content/BotC_PDFer_3",
+      "RelativePath": "app.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/app.js"
+    },
+    {
+      "Identity": "/home/fabulist/RiderProjects/Blood-on-the-CLocktower-JSON-to-PDF/BotC_PDFer_3/wwwroot/index.html",
+      "SourceId": "BotC_PDFer_3",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/fabulist/RiderProjects/Blood-on-the-CLocktower-JSON-to-PDF/BotC_PDFer_3/wwwroot/",
+      "BasePath": "_content/BotC_PDFer_3",
+      "RelativePath": "index.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/index.html"
+    },
+    {
+      "Identity": "/home/fabulist/RiderProjects/Blood-on-the-CLocktower-JSON-to-PDF/BotC_PDFer_3/wwwroot/styles.css",
+      "SourceId": "BotC_PDFer_3",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/fabulist/RiderProjects/Blood-on-the-CLocktower-JSON-to-PDF/BotC_PDFer_3/wwwroot/",
+      "BasePath": "_content/BotC_PDFer_3",
+      "RelativePath": "styles.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/styles.css"
+    }
+  ]
 }
