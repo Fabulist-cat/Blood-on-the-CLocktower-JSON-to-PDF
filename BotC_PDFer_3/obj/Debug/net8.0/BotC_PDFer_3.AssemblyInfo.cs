@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BotC_PDFer_3")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6bec641339a3526a461cd0d994f6ba0c994cff77")]
 [assembly: System.Reflection.AssemblyProductAttribute("BotC_PDFer_3")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BotC_PDFer_3")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
