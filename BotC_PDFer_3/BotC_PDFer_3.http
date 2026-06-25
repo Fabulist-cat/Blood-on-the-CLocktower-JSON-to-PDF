@@ -1,0 +1,33 @@
+// 1. Establish the real-time link to the C# Backend
+const connection = new signalR.HubConnectionBuilder()
+.withUrl("/botc_pdfer_3")
+    .build();
+
+// 2. Listen for 'ReceiveStatus' updates sent from C#
+connection.on("ReceiveStatus", (message) => {
+    document.getElementById("statusDiv").innerText = message;
+});
+
+// 3. Listen for 'TaskCompleted' event to unlock your UI buttons
+let folderToOpen = "";
+connection.on("TaskCompleted", (path) => {
+    folderToOpen = path;
+    document.getElementById("openFolderBtn").disabled = false; // Activate button!
+    document.getElementById("statusDiv").innerText = "Done!";
+});
+
+// Start the network connection loop
+connection.start();
+
+// --- Triggering the Hooks via User Actions ---
+
+// Action A: Send JSON data to C#
+function sendDataToBackend() {
+    const payload = JSON.stringify({ setting: "example", value: 123 });
+    connection.invoke("ProcessDataAsync", payload);
+}
+
+// Action B: Click active button to open local native folder
+function requestOpenFolder() {
+    connection.invoke("OpenLocalFolder", folderToOpen);
+}
