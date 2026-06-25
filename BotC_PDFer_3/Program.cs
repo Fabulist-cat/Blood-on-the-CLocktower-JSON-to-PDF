@@ -1,4 +1,6 @@
+using System.Diagnostics;
 using System.Net;
+using System.Runtime.InteropServices;
 using System.Text.Json;
 using Microsoft.VisualBasic.CompilerServices;
 using QuestPDF.Fluent;
@@ -10,21 +12,12 @@ using QuestPDF.Drawing;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 using SkiaSharp;
 
-/*
-var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddSignalR();
-builder.Services.AddCors(); 
-var app = builder.Build();
-app.UseDefaultFiles(); 
-app.UseStaticFiles();  
-app.UseRouting();
-app.MapHub<AppHub>("/botc_pdfer_3");
-app.Run();
-*/
+
+
 
 namespace BotC_PDFer_3
 {
-    internal class Program
+    public class Program
     {
         private static readonly HttpClient _client = new HttpClient();
         private static string _outputName = string.Empty;
@@ -32,7 +25,6 @@ namespace BotC_PDFer_3
         private static string _workFolder = Path.Combine(Directory.GetCurrentDirectory(), "outputs");
         private static string _config = "data/config.txt";
         private static readonly object _fileLock = new object();
-
 
         private static readonly string FullGameJsonUrl =
             "https://raw.githubusercontent.com/Fabulist-cat/Blood-on-the-CLocktower-JSON-to-PDF/refs/heads/master/data/full_game.json";
@@ -48,22 +40,111 @@ namespace BotC_PDFer_3
         private static readonly string NightOrderLocalPath = "data/night_order.json";
         private static List<Dictionary<string, string>> jinxPairs = new();
 
-
-        private static void Main(string[] args)
+        public static void Main(string[] args)
         {
+            var builder = WebApplication.CreateBuilder(args);
+            builder.Services.AddControllers();
+            
+            var app = builder.Build();
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
+            app.MapControllers();
+            DateTime lastHeartbeat = DateTime.UtcNow;
+
+            app.MapGet("/api/connect", async (HttpContext context) =>
+            {
+                context.Response.ContentType = "text/event-stream";
+                context.Response.Headers.CacheControl = "no-cache";
+                context.Response.Headers.Connection = "keep-alive";
+
+                Interlocked.Increment(ref AppState.ActiveConnections);
+                AppState.ClientHasConnected = true;
+
+                try
+                {
+                    // 🔥 CRUCIAL FIX: Write an initial handshake line and flush it immediately.
+                    // This forces Kestrel to send the headers to the browser right now.
+                    await context.Response.WriteAsync(":\n\n"); 
+                    await context.Response.Body.FlushAsync();
+
+                    // Keep the connection open while the tab is alive
+                    await Task.Delay(-1, context.RequestAborted);
+                }
+                catch (TaskCanceledException)
+                {
+                    // Handled automatically when tab closes or refreshes
+                }
+                finally
+                {
+                    if (Interlocked.Decrement(ref AppState.ActiveConnections) == 0 && AppState.ClientHasConnected)
+                    {
+                        await Task.Delay(3000); // 3-second grace period for page refreshes
+                        if (Volatile.Read(ref AppState.ActiveConnections) == 0)
+                        {
+                            app.Lifetime.StopApplication();
+                        }
+                    }
+                }
+            });
+            
+            // Browser launcher and startup safety net
+            app.Lifetime.ApplicationStarted.Register(() =>
+            {
+                var serverUrl = app.Urls.FirstOrDefault() ?? "http://localhost:5081";
+                OpenBrowser(serverUrl);
+    
+                // Safety net: If no browser connects within 15 seconds, shut down
+                Task.Run(async () =>
+                {
+                    await Task.Delay(15000);
+                    if (!AppState.ClientHasConnected && Volatile.Read(ref AppState.ActiveConnections) == 0)
+                    {
+                        app.Lifetime.StopApplication();
+                    }
+                });
+            });
+            
+            app.Run();
+            
+            // Cross-platform browser opener
+            void OpenBrowser(string url)
+            {
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                {
+                    Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });
+                }
+                else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+                {
+                    Process.Start("xdg-open", url);
+                }
+                else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+                {
+                    Process.Start("open", url);
+                }
+            }
+            
+        }
+
+        // NEW: Entry point for the frontend
+        public static void RunPdfGenerationProcess(string inputJson, string bootleggerTranslation)
+        {
+            // Reset state for new run
+            _meta = new();
+            _outputName = string.Empty;
+            jinxPairs = new();
+
             if (!Directory.Exists(_workFolder))
             {
                 Directory.CreateDirectory(_workFolder);
             }
-            
-            
+
             UpdateData(FullGameJsonUrl, FullGameLocalPath, "mainID");
             UpdateData(JinxJsonUrl, JinxLocalPath, "jinxID");
             UpdateData(NightOrderUrl, NightOrderLocalPath, "nightID");
-            SwapIdsWithData();
+            
+            SwapIdsWithData(inputJson, bootleggerTranslation);
             jinxPairs = FindJinxes();
             CreatePDF();
-
         }
 
         static void CreatePDF()
@@ -72,100 +153,44 @@ namespace BotC_PDFer_3
             string author = _meta["author"].ToString();
             string scriptName = _meta["name"].ToString();
             string json = File.ReadAllText(filePath);
-            
-            // Deserialize the JSON data
-            var options = new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true
-            };
-            
+
+            var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
             Character[] characters = JsonSerializer.Deserialize<Character[]>(json, options);
             string imagesFolder = Path.Combine(Directory.GetCurrentDirectory(), "images");
             Directory.CreateDirectory(imagesFolder);
-            
+
             var missingImages = new List<string>();
-            
+
             foreach (var character in characters)
             {
-                if(character.Id != "_meta")
-                // Determine local image path
+                if (character.Id != "_meta")
                 {
                     string localImagePath = Path.Combine(imagesFolder, Path.GetFileName(character.Image ?? ""));
-
                     if (string.IsNullOrWhiteSpace(character.Image))
                     {
-                        // Assume image already downloaded; check if file exists
-                        if (!File.Exists(localImagePath))
-                        {
-                            missingImages.Add(character.Name);
-                        }
-
-                        // Nothing else to do
+                        if (!File.Exists(localImagePath)) missingImages.Add(character.Name);
                         character.Image = localImagePath;
                         continue;
                     }
 
-                    // Determine remote URL
                     string imageUrl = null;
-                    if (string.IsNullOrEmpty(character.Image))
-                    {
-                        imageUrl =
-                            ("https://raw.githubusercontent.com/ThePandemoniumInstitute/botc-release/refs/heads/main/resources/characters/" +
-                             character.Edition + "/" + character.Name);
-                        switch (character.Team)
-                        {
-                            case "townsfolk" or "outsider":
-                                imageUrl += "_g";
-                                break;
-                            case "minion" or "demon":
-                                imageUrl += "_e";
-                                break;
-                        }
+                    if (character.Image.StartsWith("http", StringComparison.OrdinalIgnoreCase)) imageUrl = character.Image;
+                    else if (character.Image.StartsWith("/build", StringComparison.OrdinalIgnoreCase)) imageUrl = "https://www.pocketgrimoire.co.uk" + character.Image;
+                    else if (character.Image.StartsWith("/img", StringComparison.OrdinalIgnoreCase)) imageUrl = "https://raw.githubusercontent.com/Skateside/pocket-grimoire/main/assets" + character.Image;
+                    else imageUrl = character.Image;
 
-                        imageUrl += ".webp";
-                    }
-                    else if (character.Image.StartsWith("http", StringComparison.OrdinalIgnoreCase))
-                    {
-                        imageUrl = character.Image;
-                    }
-                    //*
-                    else if (character.Image.StartsWith("/build", StringComparison.OrdinalIgnoreCase))
-                    {
-                        imageUrl = "https://www.pocketgrimoire.co.uk" + character.Image;
-                    }
-                    else if (character.Image.StartsWith("/img", StringComparison.OrdinalIgnoreCase))
-                    {
-                        imageUrl = "https://raw.githubusercontent.com/Skateside/pocket-grimoire/main/assets" +
-                                   character.Image;
-                    }
-                    //*/
-                    else
-                    {
-                        // Treat as local path
-                        imageUrl = character.Image;
-                    }
-
-                    // Download image
                     DownloadImage(imageUrl, localImagePath);
                     character.Image = localImagePath;
-                    Console.WriteLine(character.Name, character.Team, character.Image, character.FirstNight);
+                    Console.WriteLine($"{character.Name} processed.");
                 }
             }
-            
-            // Throw error if any images are missing
+
             if (missingImages.Count > 0)
             {
-                Console.WriteLine("Images are missing");
-                foreach (var name in missingImages)
-                {
-                    Console.WriteLine($" - {name}");
-                }
+                Console.WriteLine("Images are missing:");
+                foreach (var name in missingImages) Console.WriteLine($" - {name}");
                 throw new Exception("Some images are missing");
             }
-            
-            /*==============================================================================================================
-            SECTION THAT CREATES THE PDF ITSELF
-            */
 
             QuestPDF.Settings.License = LicenseType.Community;
 
@@ -175,17 +200,17 @@ namespace BotC_PDFer_3
                 FontManager.RegisterFont(File.OpenRead("fonts/Georgia.ttf"));
                 FontManager.RegisterFont(File.OpenRead("fonts/Georgia-Italic.ttf"));
                 FontManager.RegisterFont(File.OpenRead("fonts/Candara.ttf"));
-                FontManager.RegisterFontWithCustomName("TNR",File.OpenRead("fonts/Royal_Times_New_Roman.ttf"));
+                FontManager.RegisterFontWithCustomName("TNR", File.OpenRead("fonts/Royal_Times_New_Roman.ttf"));
+                
                 document.Page(page =>
                 {
                     page.DefaultTextStyle(x => x.FontFamily("TNR"));
                     page.Size(PageSizes.A4);
                     page.Margin(16);
-                    
                     page.Header().Column(column =>
                     {
                         column.Item().Text($"     {scriptName}").FontSize(18).SemiBold().FontFamily("Arlekino");
-                        column.Item().Row(headersRow => 
+                        column.Item().Row(headersRow =>
                         {
                             headersRow.RelativeItem().Column(headCol =>
                             {
@@ -198,23 +223,19 @@ namespace BotC_PDFer_3
                                 {
                                     if (bootlegger != null)
                                     {
-                                        Console.WriteLine("Bootlegger present!");
-                                        if (_meta["bootlegger"] is object[] array && array.Length > 0)
+                                        if (_meta.ContainsKey("bootlegger") && _meta["bootlegger"] is object[] array && array.Length > 0)
                                         {
                                             foreach (var data in array)
                                             {
-                                                Console.WriteLine($"Bootlegger: {data}");
                                                 imgRow.RelativeItem().AlignRight().ScaleToFit().Text($"Контрабандист: {data}")
                                                     .FontFamily("Candara").FontSize(6);
                                             }
                                         }
                                         else
                                         {
-                                            Console.WriteLine($"Bootlegger: classic");
                                             imgRow.RelativeItem().AlignRight().ScaleToFit().Text("Контрабандист: у цьому сценарії є саморобні правила або персонажі")
                                                 .FontFamily("Candara").FontSize(6);
                                         }
-                                        
                                         imgRow.ConstantItem(15).Height(15).AlignRight().PaddingRight(-4).Image(bootlegger.Image);
                                     }
 
@@ -224,67 +245,39 @@ namespace BotC_PDFer_3
                                         {
                                             if (character.Id != "bootlegger_uk")
                                             {
-                                                imgRow.ConstantItem(15).Height(15).AlignRight().PaddingRight(-4)
-                                                    .Image(character.Image);
+                                                imgRow.ConstantItem(15).Height(15).AlignRight().PaddingRight(-4).Image(character.Image);
                                             }
                                         }
                                     }
                                 });
-
                             });
-                        
                         });
-
-                        /*column.Item().Text($"     {scriptName}").FontSize(18).SemiBold().FontFamily("Arlekino");
-                        column.Item().Text($"             by {author}").FontFamily("Georgia");
-                        //column.Item().PaddingVertical(5).LineHorizontal(1).LineColor(Colors.Grey.Medium);*/
                     });
                     page.Content().Layers(layers =>
                     {
                         layers.PrimaryLayer().Column(contentColumn =>
                         {
-                            var townImage = Path.Combine(Directory.GetCurrentDirectory(), "data", "_townsfolk.png");
-                            var outsImage = Path.Combine(Directory.GetCurrentDirectory(), "data", "_outsiders.png");
-                            var minImage = Path.Combine(Directory.GetCurrentDirectory(), "data", "_minions.png");
-                            var demImage = Path.Combine(Directory.GetCurrentDirectory(), "data", "_demons.png");
-                            contentColumn.Item().Image(townImage).FitWidth();
+                            contentColumn.Item().Image(Path.Combine(Directory.GetCurrentDirectory(), "data", "_townsfolk.png")).FitWidth();
                             TeamDrawing("townsfolk", contentColumn, characters);
-                            contentColumn.Item().Image(outsImage).FitWidth();
+                            contentColumn.Item().Image(Path.Combine(Directory.GetCurrentDirectory(), "data", "_outsiders.png")).FitWidth();
                             TeamDrawing("outsider", contentColumn, characters);
-                            contentColumn.Item().Image(minImage).FitWidth();
+                            contentColumn.Item().Image(Path.Combine(Directory.GetCurrentDirectory(), "data", "_minions.png")).FitWidth();
                             TeamDrawing("minion", contentColumn, characters);
-                            contentColumn.Item().Image(demImage).FitWidth();
+                            contentColumn.Item().Image(Path.Combine(Directory.GetCurrentDirectory(), "data", "_demons.png")).FitWidth();
                             TeamDrawing("demon", contentColumn, characters);
-
                         });
-                        /*layers.Layer().Row(florow =>
-                        {
-                            var bootlegger = characters.ToList().Find(character => character.Id == "bootlegger") ?? null;
-                            if (bootlegger != null)
-                            {
-                                florow.ConstantItem(10).AlignRight().PaddingRight(-4).PaddingTop(20).Image(bootlegger.Image);
-                            }
-
-                            foreach (var character in characters)
-                            {
-                                if (character.Team is "fabled" or "loric")
-                                {
-                                    florow.ConstantItem(10).AlignRight().PaddingRight(-4).PaddingTop(20).Image(character.Image);
-                                }
-                            }
-                        });*/
                     });
                     page.Footer().Column(column =>
                     {
                         column.Item().Text("*окрім першої").Italic().AlignRight().FontFamily("Georgia");
                     });
                 });
+
                 document.Page(page2 =>
                 {
                     page2.DefaultTextStyle(x => x.FontFamily("TNR"));
                     page2.Size(PageSizes.A4);
-                    page2.MarginLeft(10);
-                    page2.MarginRight(10);
+                    page2.MarginLeft(10); page2.MarginRight(10);
                     page2.Header().Column(column =>
                     {
                         column.Item().Text($" {scriptName}").FontSize(18).SemiBold().FontFamily("Arlekino").AlignCenter();
@@ -296,62 +289,36 @@ namespace BotC_PDFer_3
                         var demonImage = Path.Combine(Directory.GetCurrentDirectory(), "data", "_demon.png");
                         var minionImage = Path.Combine(Directory.GetCurrentDirectory(), "data", "_minion.png");
                         var imagePath = Path.Combine(Directory.GetCurrentDirectory(), "data", "_page2.png");
-                        
                         page2.Background().Image(imagePath);
                         layers.PrimaryLayer().Row(row =>
                         {
-                            string nightOrder = File.ReadAllText(NightOrderLocalPath);
-                            var order = JsonConvert.DeserializeObject<Dictionary<string, List<string>>>(nightOrder);
+                            string nightOrderContent = File.ReadAllText(NightOrderLocalPath);
+                            var order = JsonConvert.DeserializeObject<Dictionary<string, List<string>>>(nightOrderContent);
                             row.ConstantItem(100).Column(contentColumn =>
                             {
-                                
-                                
-                                List<string> forder = new List<string>();
-                                
+                                List<string> forder = new();
+                                if (_meta.ContainsKey("firstNight") && _meta["firstNight"] is object[] array && array.Length > 0)
+                                {
+                                    foreach (var dat in array) forder.Add(dat.ToString());
+                                }
+                                else forder = order["firstNight"];
 
-                                if (_meta["firstNight"] is object[] array && array.Length > 0)
-                                {
-                                    foreach (var dat in array)
-                                    {
-                                        forder.Add(dat.ToString());
-                                    }
-                                }
-                                else
-                                {
-                                    forder = order["firstNight"];
-                                }
-                                
                                 foreach (string dat in forder)
                                 {
                                     switch (dat)
                                     {
-                                        case "dusk":
-                                            NightOrderDrawing("Вечір", duskImage, null, contentColumn);
-                                            break;
-                                            case "minioninfo" :
-                                            NightOrderDrawing("Дані міньйонів", minionImage, null, contentColumn);
-                                            break;
-                                        case "demoninfo":
-                                            NightOrderDrawing("Дані демона", demonImage, null, contentColumn);
-                                            break;
-                                        case "dawn":
-                                            NightOrderDrawing("Ранок", dawnImage, null, contentColumn);
-                                            break;
+                                        case "dusk": NightOrderDrawing("Вечір", duskImage, null, contentColumn); break;
+                                        case "minioninfo": NightOrderDrawing("Дані міньйонів", minionImage, null, contentColumn); break;
+                                        case "demoninfo": NightOrderDrawing("Дані демона", demonImage, null, contentColumn); break;
+                                        case "dawn": NightOrderDrawing("Ранок", dawnImage, null, contentColumn); break;
                                         default:
                                             foreach (var character in characters)
                                             {
-                                                if (character.Id == dat + "_uk")
-                                                {
-                                                    NightOrderDrawing(character.Name, null, character, contentColumn);
-                                                }
+                                                if (character.Id == dat + "_uk") NightOrderDrawing(character.Name, null, character, contentColumn);
                                             }
-
                                             break;
-                                            
                                     }
-                                    
                                 }
-                                
                             });
                             row.RelativeItem();
                             row.ConstantItem(230).Column(contentColumn =>
@@ -359,94 +326,63 @@ namespace BotC_PDFer_3
                                 contentColumn.Item().Height(95);
                                 contentColumn.Item().Height(500).Column(jinxColumn =>
                                 {
-                                    if (jinxPairs.Count == 0)
-                                    {
-                                        jinxColumn.Item().Height(12f, Unit.Millimetre).Text("Немає жодних").FontSize(9).FontFamily("Candara").FontColor(Colors.Grey.Lighten1).AlignCenter();
-                                    }
+                                    if (jinxPairs.Count == 0) jinxColumn.Item().Height(12f, Unit.Millimetre).Text("Немає жодних").FontSize(9).FontFamily("Candara").FontColor(Colors.Grey.Lighten1).AlignCenter();
                                     else
                                     {
                                         foreach (var jinx in jinxPairs)
                                         {
-                                            Console.WriteLine(String.Format($"Проклято {jinx["character1"]} та {jinx["character2"]}: {jinx["reason"]}"));
                                             var image1 = Path.Combine(Directory.GetCurrentDirectory(), "images", $"{jinx["character1"]}.webp");
                                             var image2 = Path.Combine(Directory.GetCurrentDirectory(), "images", $"{jinx["character2"]}.webp");
-                                            jinxColumn.Item().Height(12f, Unit.Millimetre).Row(row =>
+                                            jinxColumn.Item().Height(12f, Unit.Millimetre).Row(jrow =>
                                             {
-                                                row.ConstantItem(14, Unit.Millimetre).AlignCenter().AlignMiddle().PaddingTop(-4).Image(image1).FitArea();
-                                                row.ConstantItem(14, Unit.Millimetre).AlignCenter().AlignMiddle().PaddingTop(-4).Image(image2).FitArea();
-                                                row.RelativeItem().StopPaging().Text(jinx["reason"]).FontSize(6).FontFamily("Candara");
+                                                jrow.ConstantItem(14, Unit.Millimetre).AlignCenter().AlignMiddle().PaddingTop(-4).Image(image1).FitArea();
+                                                jrow.ConstantItem(14, Unit.Millimetre).AlignCenter().AlignMiddle().PaddingTop(-4).Image(image2).FitArea();
+                                                jrow.RelativeItem().StopPaging().Text(jinx["reason"]).FontSize(6).FontFamily("Candara");
                                             });
                                         }
                                     }
-
-                                    contentColumn.Item().Row(row =>
+                                    contentColumn.Item().Row(brow =>
                                     {
-                                        row.RelativeItem().Column(tColumn =>
+                                        brow.RelativeItem().Column(tColumn =>
                                         {
-                                            if (DoesTeamExist(characters, "traveller"))
-                                            {
-                                                TeamDrawing("traveller", tColumn, characters, true);
-                                            }
-                                            else
-                                            {
-                                                tColumn.Item().Text("Немає жодних").FontSize(6)
-                                                    .FontFamily("Candara").FontColor(Colors.Grey.Lighten1);
-                                            }
+                                            if (DoesTeamExist(characters, "traveller")) TeamDrawing("traveller", tColumn, characters, true);
+                                            else tColumn.Item().Text("Немає жодних").FontSize(6).FontFamily("Candara").FontColor(Colors.Grey.Lighten1);
                                         });
-                                        row.RelativeItem().Column(tColumn =>
+                                        brow.RelativeItem().Column(tColumn =>
                                         {
                                             if (DoesTeamExist(characters, "fabled"))
                                             {
                                                 TeamDrawing("fabled", tColumn, characters, true);
                                                 TeamDrawing("loric", tColumn, characters, true);
                                             }
-                                            else
-                                            {
-                                                tColumn.Item().Text("Немає жодних").FontSize(6)
-                                                    .FontFamily("Candara").FontColor(Colors.Grey.Lighten1);
-                                            }
+                                            else tColumn.Item().Text("Немає жодних").FontSize(6).FontFamily("Candara").FontColor(Colors.Grey.Lighten1);
                                         });
                                     });
-
                                 });
-                                
                                 row.RelativeItem();
                                 row.ConstantItem(100).FlipOver().Column(contentColumn =>
                                 {
                                     contentColumn.Item().Height(30);
-                                    List<string> oorder = new List<string>(); 
-                                    if (_meta["otherNight"] is object[] orray && orray.Length > 0)
+                                    List<string> oorder = new();
+                                    if (_meta.ContainsKey("otherNight") && _meta["otherNight"] is object[] orray && orray.Length > 0)
                                     {
-                                       foreach (var dat in orray)
-                                       {
-                                           oorder.Add(dat.ToString());
-                                       }
+                                        foreach (var dat in orray) oorder.Add(dat.ToString());
                                     }
-                                    else
-                                    {
-                                       oorder = order["firstNight"];
-                                    }
+                                    else oorder = order["firstNight"];
 
                                     foreach (string odat in oorder)
                                     {
-                                       switch (odat)
-                                       {
-                                           case "dusk":
-                                               NightOrderDrawing("Вечір", duskImage, null, contentColumn);
-                                               break;
-                                           case "dawn":
-                                               NightOrderDrawing("Ранок", dawnImage, null, contentColumn);
-                                               break;
-                                           default:
-                                               foreach (var character in characters)
-                                               {
-                                                   if (character.Id == odat + "_uk")
-                                                   {
-                                                       NightOrderDrawing(character.Name, null, character, contentColumn);
-                                                   }
-                                               }
-                                               break;
-                                       }
+                                        switch (odat)
+                                        {
+                                            case "dusk": NightOrderDrawing("Вечір", duskImage, null, contentColumn); break;
+                                            case "dawn": NightOrderDrawing("Ранок", dawnImage, null, contentColumn); break;
+                                            default:
+                                                foreach (var character in characters)
+                                                {
+                                                    if (character.Id == odat + "_uk") NightOrderDrawing(character.Name, null, character, contentColumn);
+                                                }
+                                                break;
+                                        }
                                     }
                                 });
                             });
@@ -454,9 +390,9 @@ namespace BotC_PDFer_3
                     });
                 });
             });
-           
-        document.GeneratePdf($"{_workFolder}/{scriptName}.pdf");
 
+            document.GeneratePdf($"{_workFolder}/{scriptName}.pdf");
+            Console.WriteLine($"PDF Generated: {scriptName}.pdf");
         }
 
         private static void TeamDrawing(string team, ColumnDescriptor contentColumn, Character[] characters, bool noAbility = false)
@@ -467,450 +403,225 @@ namespace BotC_PDFer_3
                 {
                     contentColumn.Item().Layers(layers =>
                     {
-                        layers.PrimaryLayer().Row(row =>{
+                        layers.PrimaryLayer().Row(row =>
+                        {
+                            row.ConstantItem(14, Unit.Millimetre).PaddingRight(8).AlignCenter().AlignMiddle().PaddingTop(-4).Image(character.Image).FitArea();
+                            if (!noAbility)
                             {
-                                Console.WriteLine($"{character.Name}: {character.Image}");
-                                row.ConstantItem(14, Unit.Millimetre).PaddingRight(8).AlignCenter().AlignMiddle().PaddingTop(-4).Image(character.Image).FitArea();
-                                if (!noAbility)
+                                layers.Layer().Row(lrow =>
                                 {
-                                    layers.Layer().Row(row =>
+                                    lrow.ConstantItem(25);
+                                    lrow.ConstantItem(5, Unit.Millimetre).Column(jinxColumn =>
                                     {
-                                        row.ConstantItem(25);
-                                        row.ConstantItem(5,Unit.Millimetre).Column(jinxColumn =>
+                                        foreach (var pair in jinxPairs)
                                         {
-                                            foreach (var pair in jinxPairs)
+                                            if (character.Id == pair["character1"] + "_uk")
                                             {
-                                                if (character.Id == pair["character1"]+"_uk")
-                                                {
-                                                    Console.WriteLine($"Jinx: {pair["character1"]}, {pair["character2"]}");
-                                            
-                                                    var image2 = Path.Combine(Directory.GetCurrentDirectory(), "images", $"{pair["character2"]}.webp");
-                                                    jinxColumn.Item().AlignLeft().AlignBottom()
-                                                        .Height(3f, Unit.Millimetre).Image(image2).FitArea();
-                                                };
+                                                var image2 = Path.Combine(Directory.GetCurrentDirectory(), "images", $"{pair["character2"]}.webp");
+                                                jinxColumn.Item().AlignLeft().AlignBottom().Height(3f, Unit.Millimetre).Image(image2).FitArea();
                                             }
-                                        });
-                                        
+                                        }
                                     });
-                                
-                                }
-                                if (noAbility)
-                                {
-                                    row.RelativeItem().PaddingRight(8).Text(character.Name).SemiBold().FontSize(10);
-                                }
-                                else
-                                {
-                                    row.ConstantItem(86).PaddingRight(8).Text(character.Name).SemiBold().FontSize(10);
-                                }
-                                //row.RelativeItem()                              {
-                                if (!noAbility)
-                                {
-                                    row.RelativeItem().Text(character.Ability).FontSize(9).FontFamily("Candara");
-                                }
-                                //contentColumn.Item().PaddingVertical(10);
-                            };
+                                });
+                            }
+                            if (noAbility) row.RelativeItem().PaddingRight(8).Text(character.Name).SemiBold().FontSize(10);
+                            else row.ConstantItem(86).PaddingRight(8).Text(character.Name).SemiBold().FontSize(10);
+                            
+                            if (!noAbility) row.RelativeItem().Text(character.Ability).FontSize(9).FontFamily("Candara");
                         });
                     });
                 }
             }
         }
-        
-        static void SwapIdsWithData()
+
+        static void SwapIdsWithData(string inputRaw, string bootleggerTranslation)
         {
-            // Load the data from the JSON file
-            string _outputFilePath;
-            string _outputJson;
             string dataJson = File.ReadAllText(FullGameLocalPath);
             var data = JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(dataJson);
-
-            // Create a dictionary for quick lookup by ID
             var dataDict = new Dictionary<string, Dictionary<string, object>>();
             foreach (var entry in data)
             {
-                if (entry.TryGetValue("id", out object idValue))
-                {
-                    string id = idValue.ToString();
-                    dataDict[id] = entry;
-                }
+                if (entry.TryGetValue("id", out object idValue)) dataDict[idValue.ToString()] = entry;
             }
 
-            // Prompt for input JSON data or link
-            Console.WriteLine("Awaiting JSON");
-            string inputRaw = Console.ReadLine().Trim();
-
-            // Detect if it's a URL
             string inputJson;
-            if (Uri.TryCreate(inputRaw, UriKind.Absolute, out Uri inputUri) &&
-                (inputUri.Scheme == Uri.UriSchemeHttp || inputUri.Scheme == Uri.UriSchemeHttps))
+            if (Uri.TryCreate(inputRaw, UriKind.Absolute, out Uri inputUri) && (inputUri.Scheme == Uri.UriSchemeHttp || inputUri.Scheme == Uri.UriSchemeHttps))
             {
-                using (var client = new WebClient())
-                {
-                    inputJson = client.DownloadString(inputUri);
-                }
+                using (var client = new WebClient()) inputJson = client.DownloadString(inputUri);
             }
-            else
-            {
-                inputJson = inputRaw;
-            }
+            else inputJson = inputRaw;
 
-            // Optionally strip BOM / invisible characters
             inputJson = inputJson.TrimStart('\uFEFF', '\u200B', '\u0000');
+            JArray inputData = JsonConvert.DeserializeObject<JArray>(inputJson);
 
-            JArray inputData;
-            try
-            {
-                inputData = JsonConvert.DeserializeObject<JArray>(inputJson);
-            }
-            catch (Newtonsoft.Json.JsonException ex)
-            {
-                Console.WriteLine($"Failed to parse: {ex.Message}");
-                return;
-            }
-
-            // Extract the data for the output file
-            _outputName = string.Empty;
             foreach (var item in inputData)
             {
-                if (item is JObject jObject &&
-                    jObject.TryGetValue("id", out JToken idToken) &&
-                    idToken.ToString() == "_meta")
+                if (item is JObject jObject && jObject.TryGetValue("id", out JToken idToken) && idToken.ToString() == "_meta")
                 {
                     _outputName = jObject.GetValue("name")?.ToString() ?? "";
-                    _meta.Add("name",_outputName);
-                    _meta.Add("author", jObject.GetValue("author")?.ToString() ?? "");
-                    _meta.Add("logo", jObject.GetValue("logo")?.ToString() ?? "");
-                    _meta.Add("background",jObject.GetValue("background")?.ToString() ?? "");
-                    _meta.Add("almanac",jObject.GetValue("almanac")?.ToString() ?? "");
-                    _meta.Add("bootlegger", jObject.GetValue("bootlegger")?.ToArray() ?? []);
-                    _meta.Add("firstNight", jObject.GetValue("firstNight")?.ToArray() ?? []);
-                    _meta.Add("otherNight", jObject.GetValue("otherNight")?.ToArray() ?? []);
-
-                    foreach (var (k,v) in _meta)
-                    {
-                        Console.WriteLine($"{k}: {v}");
-                    }
-
-                    break;
+                    _meta["name"] = _outputName;
+                    _meta["author"] = jObject.GetValue("author")?.ToString() ?? "";
+                    _meta["logo"] = jObject.GetValue("logo")?.ToString() ?? "";
+                    _meta["background"] = jObject.GetValue("background")?.ToString() ?? "";
+                    _meta["almanac"] = jObject.GetValue("almanac")?.ToString() ?? "";
+                    _meta["firstNight"] = jObject.GetValue("firstNight")?.ToArray() ?? [];
+                    _meta["otherNight"] = jObject.GetValue("otherNight")?.ToArray() ?? [];
+                    
+                    if (!string.IsNullOrEmpty(bootleggerTranslation)) _meta["bootlegger"] = new object[] { bootleggerTranslation };
+                    else _meta["bootlegger"] = jObject.GetValue("bootlegger")?.ToArray() ?? [];
                 }
             }
 
-            if (string.IsNullOrEmpty(_outputName))
-            {
-                throw new Exception("No script name detected");
-            }
+            if (string.IsNullOrEmpty(_outputName)) throw new Exception("No script name detected");
 
-            // Prepare the output list
             var outputData = new List<object>();
-
-            // Swap IDs with corresponding dictionaries
             foreach (var item in inputData)
             {
-                // Case 1: string ID
                 if (item.Type == JTokenType.String)
                 {
-                    string idString = item.ToString(); // extract string value
-                    string formattedId = idString.Replace("_", "").ToLower() + "_uk";
-
-                    if (dataDict.TryGetValue(formattedId, out var dictEntry))
-                    {
-                        outputData.Add(dictEntry);
-                    }
-                    else
-                    {
-                        Console.WriteLine(string.Format($"ID not found: {formattedId}"));
-                        Console.WriteLine("Available IDs:");
-                        foreach (var key in dataDict.Keys)
-                            Console.WriteLine($" - {key}");
-                        Environment.Exit(1);
-                    }
-
+                    string formattedId = item.ToString().Replace("_", "").ToLower() + "_uk";
+                    if (dataDict.TryGetValue(formattedId, out var dictEntry)) outputData.Add(dictEntry);
                     continue;
                 }
-
-                // Case 2: JObject
                 if (item.Type == JTokenType.Object)
                 {
-                    var jObject = (JObject)item;
-
-                    // Preserve _meta
-                    if (jObject.TryGetValue("id", out var idToken) &&
-                        idToken.Type == JTokenType.String &&
-                        idToken.ToString() == "_meta")
+                    var jObj = (JObject)item;
+                    if (jObj.TryGetValue("id", out var idTok) && idTok.ToString() == "_meta") { outputData.Add(jObj); continue; }
+                    if (jObj.ContainsKey("team") || jObj.ContainsKey("ability")) { outputData.Add(jObj); continue; }
+                    if (jObj.TryGetValue("id", out idTok))
                     {
-                        outputData.Add(jObject);
+                        string formattedId = idTok.ToString().Replace("_", "").ToLower() + "_uk";
+                        if (dataDict.TryGetValue(formattedId, out var dictEntry)) outputData.Add(dictEntry);
                         continue;
                     }
-
-                    // Already expanded role → pass through
-                    if (jObject.ContainsKey("team") || jObject.ContainsKey("ability"))
-                    {
-                        outputData.Add(jObject);
-                        continue;
-                    }
-
-                    // JObject with id only → expand
-                    if (jObject.TryGetValue("id", out idToken) &&
-                        idToken.Type == JTokenType.String)
-                    {
-                        string formattedId = idToken.ToString().Replace("_", "").ToLower() + "_uk";
-                        if (dataDict.TryGetValue(formattedId, out var dictEntry))
-                        {
-                            outputData.Add(dictEntry);
-                        }
-                        else
-                        {
-                            Console.WriteLine(string.Format($"ID not found: {formattedId}"));
-                            Console.WriteLine("Available IDs:");
-                            foreach (var key in dataDict.Keys)
-                                Console.WriteLine($" - {key}");
-                            Environment.Exit(1);
-                        }
-
-                        continue;
-                    }
-
-                    // Unknown JObject shape → pass through
-                    outputData.Add(jObject);
+                    outputData.Add(jObj);
                     continue;
                 }
-
-                // Case 3: everything else (numbers, arrays, etc.)
                 outputData.Add(item);
             }
-            _outputFilePath = $"{_workFolder}/{_outputName}.json";
-            _outputJson = JsonConvert.SerializeObject(outputData, Formatting.Indented);
-            File.WriteAllText(_outputFilePath, _outputJson);
+            File.WriteAllText($"{_workFolder}/{_outputName}.json", JsonConvert.SerializeObject(outputData, Formatting.Indented));
             Console.WriteLine("JSON Created");
         }
 
         private static void UpdateData(string link, string database, string key)
         {
-            // Get version tags
-            string currTag = GetSetConfig(key).ToString();
+            string currTag = GetSetConfig(key)?.ToString() ?? "";
             string netTag = GetFileHashTag(link);
             if (currTag != netTag)
             {
-                using (var client = new WebClient())
-                {
-                    //Replace the file
-                    Console.WriteLine($"Updating {database}");
-                    client.DownloadFile(link, database);
-                }
+                using (var client = new WebClient()) client.DownloadFile(link, database);
                 GetSetConfig(key, false, netTag);
             }
-            else
-            {
-                Console.WriteLine($"{database} is up to date");
-            }
         }
-        
+
         private static object? GetSetConfig(string key, bool isGet = true, object? value = null)
         {
             if (isGet)
             {
-                // --- GET LOGIC ---
                 if (!File.Exists(_config)) return null;
-
-                // Read lines and look for "key="
-                string? targetLine = File.ReadLines(_config)
-                    .FirstOrDefault(line => line.StartsWith($"{key}=", StringComparison.OrdinalIgnoreCase));
-
+                string? targetLine = File.ReadLines(_config).FirstOrDefault(line => line.StartsWith($"{key}=", StringComparison.OrdinalIgnoreCase));
                 if (targetLine == null) return null;
-
-                // Extract the raw string value after the '='
                 string rawValue = targetLine.Substring(key.Length + 1);
-
-                // Attempt to automatically parse back into native types
                 if (int.TryParse(rawValue, out int intResult)) return intResult;
                 if (bool.TryParse(rawValue, out bool boolResult)) return boolResult;
-                
-                return rawValue; // Fallback to raw string
+                return rawValue;
             }
             else
             {
-                // --- SET LOGIC ---
                 if (value == null) return null;
-
-                // Format how it will look in the file
                 string newLine = $"{key}={value.ToString()?.Trim()}";
-
                 if (File.Exists(_config))
                 {
                     var lines = File.ReadAllLines(_config).ToList();
-                    int existingIndex = lines.FindIndex(line => line.StartsWith($"{key}=", StringComparison.OrdinalIgnoreCase));
-
-                    if (existingIndex != -1)
-                    {
-                        lines[existingIndex] = newLine; // Update line
-                    }
-                    else
-                    {
-                        lines.Add(newLine); // Append new key
-                    }
-                    
+                    int idx = lines.FindIndex(line => line.StartsWith($"{key}=", StringComparison.OrdinalIgnoreCase));
+                    if (idx != -1) lines[idx] = newLine; else lines.Add(newLine);
                     File.WriteAllLines(_config, lines);
                 }
-                else
-                {
-                    // Create file and write the very first variable
-                    File.WriteAllLines(_config, new[] { newLine });
-                }
-
+                else File.WriteAllLines(_config, new[] { newLine });
                 return null;
             }
         }
-        
-  
+
         private static string? GetFileHashTag(string rawFileUrl)
         {
-            // Using HEAD to only fetch headers without downloading the full file
             using var request = new HttpRequestMessage(HttpMethod.Head, rawFileUrl);
-        
             try
             {
-                // .Result forces the async network call to run synchronously
                 using HttpResponseMessage response = _client.SendAsync(request).Result;
-            
-                if (response.IsSuccessStatusCode && response.Headers.ETag != null)
-                {
-                    // This extracts the clean Git blob SHA-1 hash string
-                    string gitHash = response.Headers.ETag.Tag;
-                
-                    Console.WriteLine($"[GitHub ETag] Current File Tag: {gitHash}");
-                    return gitHash;
-                }
+                if (response.IsSuccessStatusCode && response.Headers.ETag != null) return response.Headers.ETag.Tag;
             }
-            catch (Exception ex)
-            {
-                // Unwrapping the AggregateException that typically occurs with .Result
-                var actualMessage = ex.InnerException != null ? ex.InnerException.Message : ex.Message;
-                Console.WriteLine($"[GitHub Error] Failed to fetch header: {actualMessage}");
-            }
-        
+            catch { }
             return null;
         }
+
         public static void DownloadImage(string imageUrl, string filePath)
         {
-            const int cropPercent = 25;
             using var client = new HttpClient();
             var response = client.GetAsync(imageUrl).Result;
             response.EnsureSuccessStatusCode();
             var imageBytes = response.Content.ReadAsByteArrayAsync().Result;
-
             using var sourceBitmap = SKBitmap.Decode(imageBytes);
-            int srcWidth  = sourceBitmap.Width;
-            int srcHeight = sourceBitmap.Height;
-
-            // Replicate the original crop math exactly
-            int cropHeight = (srcHeight * cropPercent) / 200;
-            int top        = cropHeight - (cropHeight / 4);
-            int height     = srcHeight - (cropHeight * 2);
-
-            var srcRect  = new SKRectI(0, top, srcWidth, top + height);
-            var destRect = new SKRect(0, 0, srcWidth, height);
-
-            using var cropped = new SKBitmap(srcWidth, height);
-            using var canvas  = new SKCanvas(cropped);
+            int cropHeight = (sourceBitmap.Height * 25) / 200;
+            int top = cropHeight - (cropHeight / 4);
+            int height = sourceBitmap.Height - (cropHeight * 2);
+            var srcRect = new SKRectI(0, top, sourceBitmap.Width, top + height);
+            var destRect = new SKRect(0, 0, sourceBitmap.Width, height);
+            using var cropped = new SKBitmap(sourceBitmap.Width, height);
+            using var canvas = new SKCanvas(cropped);
             canvas.DrawBitmap(sourceBitmap, srcRect, destRect);
-
             using var image = SKImage.FromBitmap(cropped);
-            using var data  = image.Encode(SKEncodedImageFormat.Webp, 90);
+            using var data = image.Encode(SKEncodedImageFormat.Webp, 90);
             using var stream = File.OpenWrite(filePath);
             data.SaveTo(stream);
         }
-        
+
         public static void NightOrderDrawing(string text, string image, Character character, ColumnDescriptor contentColumn)
         {
-            Console.WriteLine(String.Format(text));
             contentColumn.Item().Height(7.5f, Unit.Millimetre).Row(row =>
             {
-                if (image != null) 
-                {
-                    row.ConstantItem(10, Unit.Millimetre).AlignCenter().PaddingTop(-4).Image(image).FitArea();
-                }
-                else if (character != null && character.Id != "_meta")
-                {
-                    row.ConstantItem(10, Unit.Millimetre).AlignCenter().PaddingTop(-4).Image(character.Image).FitArea();
-                }
-                else
-                {
-                    row.ConstantItem(10, Unit.Millimetre).AlignCenter().PaddingTop(-4);
-                }
+                if (image != null) row.ConstantItem(10, Unit.Millimetre).AlignCenter().PaddingTop(-4).Image(image).FitArea();
+                else if (character != null && character.Id != "_meta") row.ConstantItem(10, Unit.Millimetre).AlignCenter().PaddingTop(-4).Image(character.Image).FitArea();
+                else row.ConstantItem(10, Unit.Millimetre).AlignCenter().PaddingTop(-4);
                 row.ConstantItem(64).PaddingRight(8).Text(text).SemiBold().FontSize(9).AlignLeft();
-                //contentColumn.Item().PaddingVertical(10);
             });
         }
-        
+
         public static List<Dictionary<string, string>> FindJinxes()
         {
-            string jinxFilePath = JinxLocalPath;
-            // Load the jinx data from the JSON file
-            string jinxJson = File.ReadAllText(jinxFilePath);
-            string filePath = $"{_workFolder}/{_outputName}.json";
-            string json = File.ReadAllText(filePath);
-
-            var options = new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true
-            };
+            string jinxJson = File.ReadAllText(JinxLocalPath);
+            string json = File.ReadAllText($"{_workFolder}/{_outputName}.json");
+            var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
             Character[] characters = JsonSerializer.Deserialize<Character[]>(json, options);
-
             var jinxData = JsonConvert.DeserializeObject<List<JObject>>(jinxJson);
-
-            // Dictionary to store jinx pairs with reasons
-            var jinxPairs = new List<Dictionary<string, string>>();
-
-            // Create a set of character IDs in the script for quick lookup
+            var pairs = new List<Dictionary<string, string>>();
             var characterIdsInScript = new HashSet<string>(characters.Select(c => c.Id.Replace("_uk", "")));
-
-            // Iterate through each jinx entry
-            foreach (var jinxEntry in jinxData)
+            foreach (var entry in jinxData)
             {
-                string characterId = jinxEntry["id"]?.ToString();
-
-                // Check if the character exists in the script
+                string characterId = entry["id"]?.ToString();
                 if (characterId != null && characterIdsInScript.Contains(characterId))
                 {
-                    var jinxArray = jinxEntry["jinx"] as JArray;
+                    var jinxArray = entry["jinx"] as JArray;
                     if (jinxArray != null)
                     {
                         foreach (var jinxItem in jinxArray)
                         {
                             string jinxedCharacterId = jinxItem["id"]?.ToString();
-                            string reason = jinxItem["reason"]?.ToString();
-
-                            // Check if the jinxed character also exists in the script
                             if (jinxedCharacterId != null && characterIdsInScript.Contains(jinxedCharacterId))
                             {
-                                // Add the jinx pair and reason to the list
-                                jinxPairs.Add(new Dictionary<string, string>
-                        {
-                            { "character1", characterId },
-                            { "character2", jinxedCharacterId },
-                            { "reason", reason }
-                        });
+                                pairs.Add(new Dictionary<string, string> { { "character1", characterId }, { "character2", jinxedCharacterId }, { "reason", jinxItem["reason"]?.ToString() } });
                             }
                         }
                     }
                 }
             }
-
-            return jinxPairs;
+            return pairs;
         }
 
-        private static bool DoesTeamExist(Character[] characters, string id)
-        {
-            bool exists = false;
-            foreach (var character in characters)
-            {
-                if (character.Team == id)
-                {
-                    exists = true;
-                    break;
-                }
-            }
-            return exists;
-        }
-        
+        private static bool DoesTeamExist(Character[] characters, string id) => characters.Any(c => c.Team == id);
     }
+}
+public static class AppState
+{
+    public static int ActiveConnections = 0;
+    public static bool ClientHasConnected = false;
 }
